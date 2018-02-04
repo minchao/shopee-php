@@ -26,7 +26,13 @@ trait HelperTrait
             $config['httpClient'] = $this->createMockHttpClient($response);
         }
 
-        $client = new Client($config);
+        $client = new Client(
+            array_merge([
+                'secret' => '42',
+                'partner_id' => 1,
+                'shopid' => 10000,
+            ], $config)
+        );
 
         return $client;
     }
