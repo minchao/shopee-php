@@ -1,0 +1,11 @@
+# Composer files
+vendor/
+composer.lock
+
+# PHPUnit
+build/
+# see https://stackoverflow.com/a/44764078
+phpunit.xml
+
+# IntelliJ IDEA project files
+.idea/

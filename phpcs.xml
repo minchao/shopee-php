@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<ruleset>
+    <!-- show progress of the run -->
+    <arg value="p"/>
+    <!-- show sniff codes in all reports -->
+    <arg value="s"/>
+
+    <!-- use colors in output -->
+    <arg name="colors"/>
+
+    <!-- inherit rules from: -->
+    <rule ref="PSR2"/>
+
+    <!-- specific and just exclude rules in some file -->
+
+    <!-- specific and just exclude rules in testing files -->
+
+    <!-- Paths and file to check -->
+    <file>src</file>
+    <file>tests</file>
+
+    <!-- exclude file, e.g. Cache -->
+    <rule ref="Generic.Files.LineLength.TooLong">
+        <exclude-pattern>tests</exclude-pattern>
+    </rule>
+</ruleset>

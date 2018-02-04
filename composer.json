@@ -1,0 +1,45 @@
+{
+  "name": "minchao/shopee-php",
+  "description": "Shopee Partner API PHP SDK",
+  "type": "library",
+  "keywords": [
+    "shopee",
+    "openapi"
+  ],
+  "homepage": "https://github.com/minchao/shopee-php",
+  "license": "BSD-3-Clause",
+  "support": {
+    "issues": "https://github.com/minchao/shopee-php/issues"
+  },
+  "require": {
+    "php": ">=7.1",
+    "guzzlehttp/guzzle": "^6.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.0",
+    "squizlabs/php_codesniffer": "^3.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Shopee\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Shopee\\Tests\\": "tests"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "scripts": {
+    "check": [
+      "@cs-check",
+      "@test"
+    ],
+    "cs-check": "phpcs",
+    "cs-fix": "phpcbf",
+    "test": "phpunit",
+    "coverage-html": "phpunit --coverage-html=build/coverage-html"
+  }
+}
