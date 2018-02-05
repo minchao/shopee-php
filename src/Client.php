@@ -11,6 +11,7 @@ use function GuzzleHttp\Psr7\uri_for;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UriInterface;
+use Shopee\Exception\Api\AuthException;
 use Shopee\Exception\Api\BadRequestException;
 use Shopee\Exception\Api\ClientException;
 use Shopee\Exception\Api\Factory;
@@ -171,6 +172,9 @@ class Client
             switch ($exception->getCode()) {
                 case 400:
                     $className = BadRequestException::class;
+                    break;
+                case 403:
+                    $className = AuthException::class;
                     break;
                 default:
                     $className = ClientException::class;
