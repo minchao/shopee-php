@@ -96,22 +96,38 @@ class Client
         return $this;
     }
 
+    /**
+     * Create HTTP JSON body
+     *
+     * The HTTP body should contain a serialized JSON string only
+     *
+     * @param array $data
+     * @return string
+     */
     protected function createJsonBody(array $data): string
     {
         $data = array_merge([
             'partner_id' => $this->partnerId,
             'shopid' => $this->shopId,
-            'timestamp' => time(),
+            'timestamp' => time(), // Put the current UNIX timestamp when making a request
         ], $data);
 
         return json_encode($data);
     }
 
+    /**
+     * Generate an HMAC-SHA256 signature for a HTTP request
+     *
+     * @param UriInterface $uri
+     * @param string $body
+     * @return string
+     */
     protected function signature(UriInterface $uri, string $body): string
     {
         $path = $uri->getScheme() . $uri->getHost() . $uri->getPath();
         $data = $path . '|' . $body;
 
+        // HMAC-SHA256
         return hash_hmac('sha256', $data, $this->secret);
     }
 
@@ -140,7 +156,7 @@ class Client
         $headers['Content-Type'] = 'application/json';
 
         return new Request(
-            'POST',
+            'POST', // All APIs should use POST method
             $uri,
             $headers,
             $jsonBody
