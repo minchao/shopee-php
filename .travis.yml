@@ -3,11 +3,20 @@ language: php
 php:
   - 7.1
   - 7.2
+  - nightly
 
 sudo: false
 
-before_install:
-  - composer install
+matrix:
+  allow_failures:
+    - php: nightly
+
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
+install:
+  - composer install --prefer-dist
 
 script:
   - composer run check
