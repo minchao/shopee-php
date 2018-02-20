@@ -11,12 +11,17 @@ use function GuzzleHttp\Psr7\uri_for;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UriInterface;
+use Shopee\Nodes\NodeAbstract;
+use Shopee\Nodes;
 use Shopee\Exception\Api\AuthException;
 use Shopee\Exception\Api\BadRequestException;
 use Shopee\Exception\Api\ClientException;
 use Shopee\Exception\Api\Factory;
 use Shopee\Exception\Api\ServerException;
 
+/**
+ * @property Nodes\Item\Item item
+ */
 class Client
 {
     public const VERSION = '0.0.0';
@@ -49,6 +54,9 @@ class Client
     /** @var int */
     protected $shopId;
 
+    /** @var NodeAbstract[] */
+    protected $nodes = [];
+
     public function __construct(array $config = [])
     {
         $config = array_merge([
@@ -66,6 +74,17 @@ class Client
         $this->secret = $config['secret'];
         $this->partnerId = $config['partner_id'];
         $this->shopId = $config['shopid'];
+
+        $this->nodes['item'] = new Nodes\Item\Item($this);
+    }
+
+    public function __get(string $name)
+    {
+        if (!array_key_exists($name, $this->nodes)) {
+            throw new \InvalidArgumentException(sprintf('Property "%s" not exists', $name));
+        }
+
+        return $this->nodes[$name];
     }
 
     public function getHttpClient(): ClientInterface
