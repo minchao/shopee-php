@@ -81,7 +81,7 @@ class Item extends NodeAbstract
     }
 
     /**
-     * @param array|RequestParamsInterface $params
+     * @param array|GetItemDetailParams $params
      * @return ResponseData
      */
     public function getItemDetail($params): ResponseData
@@ -90,7 +90,7 @@ class Item extends NodeAbstract
     }
 
     /**
-     * @param array|RequestParamsInterface $params
+     * @param array|GetItemsListParams $params
      * @return ResponseData
      */
     public function getItemsList($params): ResponseData
