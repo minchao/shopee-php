@@ -16,6 +16,11 @@ class GetItemsListParams extends RequestParams
         'pagination_entries_per_page',
     ];
 
+    public function getPaginationOffset(): ?int
+    {
+        return $this->params['pagination_offset'];
+    }
+
     /**
      * Specifies the starting entry of data to return in the current call.
      * Default is 0. if data is more than one page, the offset can be some entry to start next call.
@@ -28,6 +33,11 @@ class GetItemsListParams extends RequestParams
         $this->params['pagination_offset'] = $offset;
 
         return $this;
+    }
+
+    public function getPaginationEntriesPerPage(): ?int
+    {
+        return $this->params['pagination_entries_per_page'];
     }
 
     /**
@@ -46,6 +56,11 @@ class GetItemsListParams extends RequestParams
         return $this;
     }
 
+    public function getUpdateTimeFrom(): ?int
+    {
+        return $this->params['update_time_from'];
+    }
+
     /**
      * The update_time_from and update_time_to fields specify a date range for retrieving orders (based on the item
      * update time). The update_time_from field is the starting date range. The maximum date range that may be specified
@@ -59,6 +74,11 @@ class GetItemsListParams extends RequestParams
         $this->params['update_time_from'] = $timestamp;
 
         return $this;
+    }
+
+    public function getUpdateTimeTo(): ?int
+    {
+        return $this->params['update_time_to'];
     }
 
     /**

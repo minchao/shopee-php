@@ -9,6 +9,11 @@ class GetItemDetailParams extends RequestParams
     protected $required = [
         'item_id',
     ];
+    
+    public function getItemId(): ?int
+    {
+        return $this->params['item_id'];
+    }
 
     /**
      * Set the Shopee's unique identifier for an item
