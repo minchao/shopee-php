@@ -2,9 +2,9 @@
 
 namespace Shopee\Nodes\Item;
 
-use Shopee\RequestParams;
+use Shopee\RequestParameters;
 
-class AddItemImgParams extends RequestParams
+class AddItemImgParameters extends RequestParameters
 {
     use ItemParameterTrait;
 
@@ -15,7 +15,7 @@ class AddItemImgParams extends RequestParams
 
     public function getImages(): ?array
     {
-        return $this->params['images'];
+        return $this->parameters['images'];
     }
 
     /**
@@ -27,7 +27,7 @@ class AddItemImgParams extends RequestParams
      */
     public function setImages(array $images)
     {
-        $this->params['images'] = $images;
+        $this->parameters['images'] = $images;
 
         return $this;
     }

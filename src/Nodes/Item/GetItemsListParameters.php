@@ -2,11 +2,11 @@
 
 namespace Shopee\Nodes\Item;
 
-use Shopee\RequestParams;
+use Shopee\RequestParameters;
 
-class GetItemsListParams extends RequestParams
+class GetItemsListParameters extends RequestParameters
 {
-    protected $params = [
+    protected $parameters = [
         'pagination_offset' => 0,
         'pagination_entries_per_page' => 100,
     ];
@@ -18,7 +18,7 @@ class GetItemsListParams extends RequestParams
 
     public function getPaginationOffset(): ?int
     {
-        return $this->params['pagination_offset'];
+        return $this->parameters['pagination_offset'];
     }
 
     /**
@@ -30,14 +30,14 @@ class GetItemsListParams extends RequestParams
      */
     public function setPaginationOffset(int $offset)
     {
-        $this->params['pagination_offset'] = $offset;
+        $this->parameters['pagination_offset'] = $offset;
 
         return $this;
     }
 
     public function getPaginationEntriesPerPage(): ?int
     {
-        return $this->params['pagination_entries_per_page'];
+        return $this->parameters['pagination_entries_per_page'];
     }
 
     /**
@@ -51,14 +51,14 @@ class GetItemsListParams extends RequestParams
      */
     public function setPaginationEntriesPerPage(int $perPage = 100)
     {
-        $this->params['pagination_entries_per_page'] = $perPage;
+        $this->parameters['pagination_entries_per_page'] = $perPage;
 
         return $this;
     }
 
     public function getUpdateTimeFrom(): ?int
     {
-        return $this->params['update_time_from'];
+        return $this->parameters['update_time_from'];
     }
 
     /**
@@ -71,14 +71,14 @@ class GetItemsListParams extends RequestParams
      */
     public function setUpdateTimeFrom(int $timestamp)
     {
-        $this->params['update_time_from'] = $timestamp;
+        $this->parameters['update_time_from'] = $timestamp;
 
         return $this;
     }
 
     public function getUpdateTimeTo(): ?int
     {
-        return $this->params['update_time_to'];
+        return $this->parameters['update_time_to'];
     }
 
     /**
@@ -91,7 +91,7 @@ class GetItemsListParams extends RequestParams
      */
     public function setUpdateTimeTo(int $timestamp)
     {
-        $this->params['update_time_to'] = $timestamp;
+        $this->parameters['update_time_to'] = $timestamp;
 
         return $this;
     }

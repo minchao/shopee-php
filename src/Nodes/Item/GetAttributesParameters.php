@@ -2,9 +2,9 @@
 
 namespace Shopee\Nodes\Item;
 
-use Shopee\RequestParams;
+use Shopee\RequestParameters;
 
-class GetAttributesParams extends RequestParams
+class GetAttributesParameters extends RequestParameters
 {
     protected $required = [
         'category_id',
@@ -14,7 +14,7 @@ class GetAttributesParams extends RequestParams
 
     public function getCategoryId(): ?int
     {
-        return $this->params['category_id'];
+        return $this->parameters['category_id'];
     }
 
     /**
@@ -27,7 +27,7 @@ class GetAttributesParams extends RequestParams
      */
     public function setCategoryId(int $categoryId)
     {
-        $this->params['category_id'] = $categoryId;
+        $this->parameters['category_id'] = $categoryId;
 
         return $this;
     }

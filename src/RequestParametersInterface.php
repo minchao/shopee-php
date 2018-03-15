@@ -2,7 +2,7 @@
 
 namespace Shopee;
 
-interface RequestParamsInterface
+interface RequestParametersInterface
 {
     public function toArray(): array;
 }

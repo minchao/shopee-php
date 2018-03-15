@@ -4,8 +4,8 @@ namespace Shopee\Nodes;
 
 use Psr\Http\Message\UriInterface;
 use Shopee\Client;
-use Shopee\RequestParams;
-use Shopee\RequestParamsInterface;
+use Shopee\RequestParameters;
+use Shopee\RequestParametersInterface;
 use Shopee\ResponseData;
 
 abstract class NodeAbstract
@@ -20,16 +20,16 @@ abstract class NodeAbstract
 
     /**
      * @param string|UriInterface $uri
-     * @param array|RequestParams $params
+     * @param array|RequestParameters $parameters
      * @return ResponseData
      */
-    public function post($uri, $params)
+    public function post($uri, $parameters)
     {
-        if ($params instanceof RequestParamsInterface) {
-            $params = $params->toArray();
+        if ($parameters instanceof RequestParametersInterface) {
+            $parameters = $parameters->toArray();
         }
 
-        $request = $this->client->newRequest($uri, [], $params);
+        $request = $this->client->newRequest($uri, [], $parameters);
         $response = $this->client->send($request);
 
         return new ResponseData($response);

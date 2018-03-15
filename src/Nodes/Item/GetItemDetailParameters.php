@@ -2,9 +2,9 @@
 
 namespace Shopee\Nodes\Item;
 
-use Shopee\RequestParams;
+use Shopee\RequestParameters;
 
-class GetItemDetailParams extends RequestParams
+class GetItemDetailParameters extends RequestParameters
 {
     use ItemParameterTrait;
 

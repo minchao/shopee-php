@@ -6,7 +6,7 @@ trait ItemParameterTrait
 {
     public function getItemId(): ?int
     {
-        return $this->params['item_id'];
+        return $this->parameters['item_id'];
     }
 
     /**
@@ -17,7 +17,7 @@ trait ItemParameterTrait
      */
     public function setItemId(int $itemId)
     {
-        $this->params['item_id'] = $itemId;
+        $this->parameters['item_id'] = $itemId;
 
         return $this;
     }
