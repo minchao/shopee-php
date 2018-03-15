@@ -117,7 +117,7 @@ class Item extends NodeAbstract
     }
 
     /**
-     * @param array|RequestParametersInterface $parameters
+     * @param array|UpdatePriceParameters $parameters
      * @return ResponseData
      */
     public function updatePrice($parameters = []): ResponseData
@@ -126,7 +126,7 @@ class Item extends NodeAbstract
     }
 
     /**
-     * @param array|RequestParametersInterface $parameters
+     * @param array|UpdateStockParameters $parameters
      * @return ResponseData
      */
     public function updateStock($parameters = []): ResponseData
@@ -135,7 +135,7 @@ class Item extends NodeAbstract
     }
 
     /**
-     * @param array|RequestParametersInterface $parameters
+     * @param array|UpdateVariationPriceParameters $parameters
      * @return ResponseData
      */
     public function updateVariationPrice($parameters = []): ResponseData
@@ -144,7 +144,7 @@ class Item extends NodeAbstract
     }
 
     /**
-     * @param array|RequestParametersInterface $parameters
+     * @param array|UpdateVariationStockParameters $parameters
      * @return ResponseData
      */
     public function updateVariationStock($parameters = []): ResponseData
