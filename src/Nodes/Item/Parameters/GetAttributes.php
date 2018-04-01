@@ -1,17 +1,11 @@
 <?php
 
-namespace Shopee\Nodes\Item;
+namespace Shopee\Nodes\Item\Parameters;
 
 use Shopee\RequestParameters;
 
-class GetAttributesParameters extends RequestParameters
+class GetAttributes extends RequestParameters
 {
-    protected $required = [
-        'category_id',
-    ];
-
-    protected $language = '';
-
     public function getCategoryId(): ?int
     {
         return $this->parameters['category_id'];
@@ -34,7 +28,7 @@ class GetAttributesParameters extends RequestParameters
 
     public function getLanguage(): string
     {
-        return $this->language;
+        return $this->parameters['language'];
     }
 
     /**
@@ -47,7 +41,7 @@ class GetAttributesParameters extends RequestParameters
      */
     public function setLanguage(string $language)
     {
-        $this->language = $language;
+        $this->parameters['language'] = $language;
 
         return $this;
     }

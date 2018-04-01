@@ -1,8 +1,8 @@
 <?php
 
-namespace Shopee\Nodes\Item;
+namespace Shopee\Nodes\Item\Parameters;
 
-trait ItemParameterTrait
+trait ItemTrait
 {
     public function getItemId(): ?int
     {

@@ -1,17 +1,12 @@
 <?php
 
-namespace Shopee\Nodes\Item;
+namespace Shopee\Nodes\Item\Parameters;
 
 use Shopee\RequestParameters;
 
-class UpdateStockParameters extends RequestParameters
+class UpdateStock extends RequestParameters
 {
-    use ItemParameterTrait;
-
-    protected $required = [
-        'item_id',
-        'stock',
-    ];
+    use ItemTrait;
 
     public function getStock(): ?int
     {

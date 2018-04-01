@@ -1,18 +1,13 @@
 <?php
 
-namespace Shopee\Nodes\Item;
+namespace Shopee\Nodes\Item\Parameters;
 
 use Shopee\RequestParameters;
 
-class AddItemImgParameters extends RequestParameters
+class AddItemImg extends RequestParameters
 {
-    use ItemParameterTrait;
-
-    protected $required = [
-        'item_id',
-        'images',
-    ];
-
+    use ItemTrait;
+    
     public function getImages(): ?array
     {
         return $this->parameters['images'];

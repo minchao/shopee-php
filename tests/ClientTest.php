@@ -131,7 +131,7 @@ class ClientTest extends TestCase
     public function testShouldBeOkWhenSend()
     {
         $expected = new Response(200, [], '"pong"');
-        $client = $this->createClient([], $expected);
+        $client = $this->createMockClient([$expected]);
 
         $request = $client->newRequest('ping');
         $actual = $client->send($request);
@@ -171,7 +171,7 @@ class ClientTest extends TestCase
         $this->expectException($exception);
 
         $response = new Response($statusCode);
-        $client = $this->createClient([], $response);
+        $client = $this->createMockClient([$response]);
 
         $request = $client->newRequest('ping');
         $client->send($request);

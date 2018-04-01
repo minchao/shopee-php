@@ -1,17 +1,12 @@
 <?php
 
-namespace Shopee\Nodes\Item;
+namespace Shopee\Nodes\Item\Parameters;
 
 use Shopee\RequestParameters;
 
-class UpdatePriceParameters extends RequestParameters
+class UpdatePrice extends RequestParameters
 {
-    use ItemParameterTrait;
-
-    protected $required = [
-        'item_id',
-        'price',
-    ];
+    use ItemTrait;
 
     public function getPrice(): ?float
     {

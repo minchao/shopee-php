@@ -1,8 +1,8 @@
 <?php
 
-namespace Shopee\Nodes\Item;
+namespace Shopee\Nodes\Item\Parameters;
 
-trait VariationIdParameterTrait
+trait VariationIdTrait
 {
     public function getVariationId(): ?int
     {

@@ -1,19 +1,14 @@
 <?php
 
-namespace Shopee\Nodes\Item;
+namespace Shopee\Nodes\Item\Parameters;
 
 use Shopee\RequestParameters;
 
-class GetItemsListParameters extends RequestParameters
+class GetItemsList extends RequestParameters
 {
     protected $parameters = [
         'pagination_offset' => 0,
         'pagination_entries_per_page' => 100,
-    ];
-
-    protected $required = [
-        'pagination_offset',
-        'pagination_entries_per_page',
     ];
 
     public function getPaginationOffset(): ?int

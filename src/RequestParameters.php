@@ -2,37 +2,48 @@
 
 namespace Shopee;
 
-class RequestParameters implements RequestParametersInterface
+abstract class RequestParameters implements RequestParametersInterface
 {
-    /** @var array */
+    /**
+     * @var array
+     */
     protected $parameters = [];
-
-    /** @var array */
-    protected $required = [];
 
     public function __construct(array $parameters = [])
     {
-        $this->parameters = array_merge($this->parameters, $parameters);
+        $this->fromArray($parameters);
     }
 
-    /**
-     * Check required parameters
-     *
-     * @return bool
-     */
-    public function check(): bool
+    protected function toCamelcase(string $name, bool $lcfirst = false): string
     {
-        foreach ($this->required as $name) {
-            if (!array_key_exists($name, $this->parameters)) {
-                return false;
-            }
+        $name = str_replace('_', '', ucwords($name, '_'));
+
+        if ($lcfirst) {
+            $name = lcfirst($name);
         }
 
-        return true;
+        return $name;
+    }
+
+    public function fromArray(array $parameters): void
+    {
+        foreach ($parameters as $key => $var) {
+            $setMethod = sprintf('set%s', $this->toCamelcase($key, true));
+            if (method_exists($this, $setMethod)) {
+                $this->$setMethod($parameters[$key]);
+            }
+        }
     }
 
     public function toArray(): array
     {
-        return $this->parameters;
+        ksort($this->parameters);
+
+        return array_map(function ($value) {
+            if ($value instanceof RequestParametersInterface) {
+                return $value->toArray();
+            }
+            return $value;
+        }, $this->parameters);
     }
 }
