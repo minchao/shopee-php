@@ -13,7 +13,6 @@ class ItemTest extends TestCase
 
     public function testShouldBeOkWhenAddItemImg()
     {
-        $historyContainer = [];
         $parameters = [
             'item_id' => 1,
             'images' => [
@@ -22,10 +21,12 @@ class ItemTest extends TestCase
             ],
         ];
 
-        $client = $this->createMockClient([new Response()], $historyContainer);
+        $client = $this->createMockClient();
+        $client->addResponse(new Response());
         $client->item->addItemImg(new AddItemImg($parameters));
 
-        $actualParameters = $this->getRequestParametersFromHistory($historyContainer, true)[0];
+        $transaction = $client->popHistory();
+        $actualParameters = $this->getRequestParametersFromTransaction($transaction, true);
 
         $this->assertEquals($parameters, $actualParameters);
     }

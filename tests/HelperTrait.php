@@ -12,62 +12,44 @@ use GuzzleHttp\Psr7\Response;
 
 trait HelperTrait
 {
+    protected $defaultConfig = [
+        'secret' => '42',
+        'partner_id' => 1,
+        'shopid' => 10000,
+    ];
+
     public function createClient(array $config = [], $httpHandler = null): Client
     {
         if ($httpHandler !== null) {
             $config['httpClient'] = new HttpClient(['handler' => $httpHandler]);
         }
 
-        return new Client(
-            array_merge([
-                'secret' => '42',
-                'partner_id' => 1,
-                'shopid' => 10000,
-            ], $config)
-        );
+        return new Client(array_merge($this->defaultConfig, $config));
     }
 
     /**
-     * @param Response[] $responses
-     * @param array|null $historyContainer
      * @param array $config
-     * @return Client
+     * @return MockClient
      */
-    public function createMockClient(array $responses, array &$historyContainer = null, array $config = []): Client
+    public function createMockClient(array $config = []): MockClient
     {
-        $mock = new MockHandler($responses);
-        $handler = HandlerStack::create($mock);
-
-        if ($historyContainer !== null) {
-            $history = Middleware::history($historyContainer);
-            $handler->push($history);
-        }
-
-        $config['httpClient'] = new HttpClient(['handler' => $handler]);
-
-        return $this->createClient($config);
+        return new MockClient(array_merge($this->defaultConfig, $config));
     }
 
-    public function getRequestParametersFromHistory(
-        array $historyContainer,
+    public function getRequestParametersFromTransaction(
+        array $transaction,
         bool $removeDefaultParameters = false
     ): array {
-        $parameters = [];
+        /** @var Request $request */
+        $request = $transaction['request'];
+        $requestParameters = json_decode($request->getBody()->getContents(), true);
 
-        foreach ($historyContainer as $transaction) {
-            /** @var Request $request */
-            $request = $transaction['request'];
-            $requestParameters = json_decode($request->getBody()->getContents(), true);
-
-            if ($removeDefaultParameters) {
-                unset($requestParameters['partner_id']);
-                unset($requestParameters['shopid']);
-                unset($requestParameters['timestamp']);
-            }
-
-            $parameters[] = $requestParameters;
+        if ($removeDefaultParameters) {
+            unset($requestParameters['partner_id']);
+            unset($requestParameters['shopid']);
+            unset($requestParameters['timestamp']);
         }
 
-        return $parameters;
+        return $requestParameters;
     }
 }
