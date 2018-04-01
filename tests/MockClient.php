@@ -22,17 +22,15 @@ class MockClient extends Client
     protected $handlerStack;
 
     /**
-     * @var array
+     * @todo Collection
      */
     protected $historyContainer = [];
 
     public function __construct(array $config = [])
     {
-        $this->mock = new MockHandler([]);
+        $this->mock = new MockHandler();
         $this->handlerStack = HandlerStack::create($this->mock);
-
-        $history = Middleware::history($this->historyContainer);
-        $this->handlerStack->push($history);
+        $this->handlerStack->push(Middleware::history($this->historyContainer));
 
         $config['httpClient'] = new HttpClient(['handler' => $this->handlerStack]);
 
@@ -44,6 +42,9 @@ class MockClient extends Client
         $this->mock->append($response);
     }
 
+    /**
+     * @return array Transaction history
+     */
     public function getHistory(): array
     {
         return $this->historyContainer;
