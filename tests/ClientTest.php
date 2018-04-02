@@ -152,6 +152,10 @@ class ClientTest extends TestCase
                 ClientException::class,
             ],
             [
+                405,
+                ClientException::class,
+            ],
+            [
                 500,
                 ServerException::class,
             ],
@@ -177,5 +181,15 @@ class ClientTest extends TestCase
 
         $request = $client->newRequest('ping');
         $client->send($request);
+    }
+
+    public function testThrowExceptionWhenCallNotExistsProperty()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Property "unknown" not exists');
+
+        $client = $this->createMockClient();
+
+        $client->unknown;
     }
 }
