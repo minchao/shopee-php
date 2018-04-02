@@ -21,13 +21,20 @@ class ItemTest extends TestCase
             ],
         ];
 
+        $expectedData = [
+            'item_id' => 1,
+            'fail_image' => [],
+        ];
+
         $client = $this->createMockClient();
-        $client->addResponse(new Response());
-        $client->item->addItemImg(new AddItemImg($parameters));
+        $client->addResponse(new Response(200, [], json_encode($expectedData)));
+        $responseData = $client->item->addItemImg(new AddItemImg($parameters));
 
         $transaction = $client->popHistory();
         $actualParameters = $this->getRequestParametersFromTransaction($transaction, true);
 
         $this->assertEquals($parameters, $actualParameters);
+        $this->assertEquals(200, $responseData->getResponse()->getStatusCode());
+        $this->assertEquals($expectedData, $responseData->getData());
     }
 }
