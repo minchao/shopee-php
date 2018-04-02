@@ -174,6 +174,7 @@ class ClientTest extends TestCase
     public function testThrowExceptionWhenSendIsError(int $statusCode, string $exception)
     {
         $this->expectException($exception);
+        $this->expectExceptionCode($statusCode);
 
         $response = new Response($statusCode);
         $client = $this->createMockClient();
