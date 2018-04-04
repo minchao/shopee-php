@@ -74,4 +74,17 @@ class RequestParametersTest extends TestCase
 
         $this->assertEquals($expected, $actual);
     }
+
+    public function testShouldBeOkWhenNewInstanceWithUnimplementedParameters()
+    {
+        $expected = [
+            'parameter' => 1000,
+            'unimplemented_parameters' => 'unimplemented',
+        ];
+        $target = $this->newInstance($expected);
+
+        $actual = $target->toArray();
+
+        $this->assertEquals($expected, $actual);
+    }
 }

@@ -31,7 +31,11 @@ abstract class RequestParameters implements RequestParametersInterface
             $setMethod = sprintf('set%s', $this->toCamelcase($key, true));
             if (method_exists($this, $setMethod)) {
                 $this->$setMethod($parameters[$key]);
+
+                continue;
             }
+
+            $this->parameters[$key] = $var;
         }
     }
 
