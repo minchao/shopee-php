@@ -2,14 +2,15 @@
 
 namespace Shopee\Tests\Nodes\Item;
 
+use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Shopee\Nodes\Item\Parameters\AddItemImg;
-use Shopee\Tests\HelperTrait;
+use Shopee\Tests\ClientTrait;
 
 class ItemTest extends TestCase
 {
-    use HelperTrait;
+    use ClientTrait;
 
     public function testShouldBeOkWhenAddItemImg()
     {
@@ -26,12 +27,16 @@ class ItemTest extends TestCase
             'fail_image' => [],
         ];
 
-        $client = $this->createMockClient();
-        $client->addResponse(new Response(200, [], json_encode($expectedData)));
+        $response = new Response(200, [], json_encode($expectedData));
+        $history = [];
+
+        $client = $this->createClient([], $this->createHttpClient($response, $history));
         $responseData = $client->item->addItemImg(new AddItemImg($parameters));
 
-        $transaction = $client->popHistory();
-        $actualParameters = $this->getRequestParametersFromTransaction($transaction, true);
+        /** @var Request $request */
+        $request = $history[0]['request'];
+        $actualParameters = json_decode((string)$request->getBody(), true);
+        $actualParameters = array_diff_assoc($actualParameters, $client->getDefaultParameters());
 
         $this->assertEquals($parameters, $actualParameters);
         $this->assertEquals(200, $responseData->getResponse()->getStatusCode());

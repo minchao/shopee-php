@@ -15,7 +15,7 @@ use Shopee\Exception\Api\ServerException;
 
 class ClientTest extends TestCase
 {
-    use HelperTrait;
+    use ClientTrait;
 
     public function testCreateClient()
     {
@@ -36,7 +36,7 @@ class ClientTest extends TestCase
             'userAgent' => 'HeartOfGold/Prototype',
         ];
 
-        $client = new Client($config);
+        $client = $this->createClient($config);
 
         $this->assertInstanceOf(ClientInterface::class, $client->getHttpClient());
         $this->assertEquals('pong', $client->getHttpClient()->getConfig('ping'));
@@ -47,8 +47,6 @@ class ClientTest extends TestCase
 
     public function testShouldBeOkWhenNewRequest()
     {
-        $client = $this->createClient();
-
         $expected = new Request(
             'POST',
             Client::DEFAULT_BASE_URL . 'orders/detail',
@@ -60,7 +58,7 @@ class ClientTest extends TestCase
             '{"partner_id":1,"shopid":10000,"timestamp":1517755590,"ordersn":"160726152598865"}'
         );
 
-        $actual = $client->newRequest(
+        $actual = $this->createClient()->newRequest(
             'orders/detail',
             [],
             [
@@ -131,8 +129,7 @@ class ClientTest extends TestCase
     public function testShouldBeOkWhenSend()
     {
         $expected = new Response(200, [], '"pong"');
-        $client = $this->createMockClient();
-        $client->addResponse($expected);
+        $client = $this->createClient([], $this->createHttpClient($expected));
 
         $request = $client->newRequest('ping');
         $actual = $client->send($request);
@@ -177,8 +174,7 @@ class ClientTest extends TestCase
         $this->expectExceptionCode($statusCode);
 
         $response = new Response($statusCode);
-        $client = $this->createMockClient();
-        $client->addResponse($response);
+        $client = $this->createClient([], $this->createHttpClient($response));
 
         $request = $client->newRequest('ping');
         $client->send($request);
@@ -189,8 +185,7 @@ class ClientTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Property "unknown" not exists');
 
-        $client = $this->createMockClient();
-
+        $client = $this->createClient();
         $client->unknown;
     }
 }

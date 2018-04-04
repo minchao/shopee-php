@@ -92,6 +92,17 @@ class Client
         return $this->httpClient;
     }
 
+    /**
+     * @param ClientInterface $client
+     * @return $this
+     */
+    public function setHttpClient(ClientInterface $client)
+    {
+        $this->httpClient = $client;
+
+        return $this;
+    }
+
     public function getUserAgent(): string
     {
         return $this->userAgent;
@@ -124,6 +135,15 @@ class Client
         return $this;
     }
 
+    public function getDefaultParameters(): array
+    {
+        return [
+            'partner_id' => $this->partnerId,
+            'shopid' => $this->shopId,
+            'timestamp' => time(), // Put the current UNIX timestamp when making a request
+        ];
+    }
+
     /**
      * Create HTTP JSON body
      *
@@ -134,11 +154,7 @@ class Client
      */
     protected function createJsonBody(array $data): string
     {
-        $data = array_merge([
-            'partner_id' => $this->partnerId,
-            'shopid' => $this->shopId,
-            'timestamp' => time(), // Put the current UNIX timestamp when making a request
-        ], $data);
+        $data = array_merge($this->getDefaultParameters(), $data);
 
         return json_encode($data);
     }
@@ -155,7 +171,6 @@ class Client
         $path = $uri->getScheme() . $uri->getHost() . $uri->getPath();
         $data = $path . '|' . $body;
 
-        // HMAC-SHA256
         return hash_hmac('sha256', $data, $this->secret);
     }
 
