@@ -97,7 +97,11 @@ class Client
         return $this->userAgent;
     }
 
-    public function setUserAgent(string $userAgent): self
+    /**
+     * @param string $userAgent
+     * @return $this
+     */
+    public function setUserAgent(string $userAgent)
     {
         $this->userAgent = $userAgent;
 
@@ -109,7 +113,11 @@ class Client
         return $this->baseUrl;
     }
 
-    public function setBaseUrl(string $url): self
+    /**
+     * @param string $url
+     * @return $this
+     */
+    public function setBaseUrl(string $url)
     {
         $this->baseUrl = new Uri($url);
 
