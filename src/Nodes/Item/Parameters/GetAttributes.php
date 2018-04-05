@@ -6,7 +6,7 @@ use Shopee\RequestParameters;
 
 class GetAttributes extends RequestParameters
 {
-    public function getCategoryId(): ?int
+    public function getCategoryId(): int
     {
         return $this->parameters['category_id'];
     }
@@ -26,7 +26,7 @@ class GetAttributes extends RequestParameters
         return $this;
     }
 
-    public function getLanguage(): string
+    public function getLanguage(): ?string
     {
         return $this->parameters['language'];
     }

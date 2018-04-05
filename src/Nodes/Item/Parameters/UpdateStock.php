@@ -8,7 +8,7 @@ class UpdateStock extends RequestParameters
 {
     use ItemTrait;
 
-    public function getStock(): ?int
+    public function getStock(): int
     {
         return $this->parameters['stock'];
     }

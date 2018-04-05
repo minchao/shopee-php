@@ -4,7 +4,7 @@ namespace Shopee\Nodes\Item\Parameters;
 
 trait ItemTrait
 {
-    public function getItemId(): ?int
+    public function getItemId(): int
     {
         return $this->parameters['item_id'];
     }

@@ -8,7 +8,7 @@ class AddItemImg extends RequestParameters
 {
     use ItemTrait;
     
-    public function getImages(): ?array
+    public function getImages(): array
     {
         return $this->parameters['images'];
     }

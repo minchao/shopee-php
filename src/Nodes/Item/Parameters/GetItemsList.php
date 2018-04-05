@@ -11,7 +11,7 @@ class GetItemsList extends RequestParameters
         'pagination_entries_per_page' => 100,
     ];
 
-    public function getPaginationOffset(): ?int
+    public function getPaginationOffset(): int
     {
         return $this->parameters['pagination_offset'];
     }
@@ -30,7 +30,7 @@ class GetItemsList extends RequestParameters
         return $this;
     }
 
-    public function getPaginationEntriesPerPage(): ?int
+    public function getPaginationEntriesPerPage(): int
     {
         return $this->parameters['pagination_entries_per_page'];
     }

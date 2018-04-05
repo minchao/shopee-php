@@ -4,7 +4,7 @@ namespace Shopee\Nodes\Item\Parameters;
 
 trait VariationIdTrait
 {
-    public function getVariationId(): ?int
+    public function getVariationId(): int
     {
         return $this->parameters['variation_id'];
     }
