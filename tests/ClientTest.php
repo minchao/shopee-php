@@ -9,6 +9,7 @@ use function GuzzleHttp\Psr7\uri_for;
 use Psr\Http\Message\UriInterface;
 use Shopee\Client;
 use PHPUnit\Framework\TestCase;
+use Shopee\Exception\Api\ApiException;
 use Shopee\Exception\Api\BadRequestException;
 use Shopee\Exception\Api\ClientException;
 use Shopee\Exception\Api\ServerException;
@@ -166,18 +167,25 @@ class ClientTest extends TestCase
     /**
      * @dataProvider getApiExceptionCases
      * @param int $statusCode
-     * @param string $exception
+     * @param string $expected
+     * @throws \Exception
      */
-    public function testThrowExceptionWhenSendIsError(int $statusCode, string $exception)
+    public function testThrowExceptionWhenSendIsError(int $statusCode, string $expected)
     {
-        $this->expectException($exception);
-        $this->expectExceptionCode($statusCode);
+        try {
+            $response = new Response($statusCode);
+            $client = $this->createClient();
+            $client->setHttpClient($this->createHttpClient($response));
 
-        $response = new Response($statusCode);
-        $client = $this->createClient([], $this->createHttpClient($response));
-
-        $request = $client->newRequest('ping');
-        $client->send($request);
+            $request = $client->newRequest('ping');
+            $client->send($request);
+        } catch (ApiException $actual) {
+            $this->assertInstanceOf($expected, $actual);
+            $this->assertEquals($statusCode, $actual->getCode());
+            $this->assertInstanceOf(Request::class, $actual->getRequest());
+            $this->assertInstanceOf(Response::class, $actual->getResponse());
+            $this->assertEquals([], $actual->getContext());
+        }
     }
 
     public function testThrowExceptionWhenCallNotExistsProperty()
