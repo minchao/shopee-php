@@ -2,6 +2,8 @@
 
 namespace Shopee\Nodes\Item;
 
+use Shopee\Nodes\Item\Parameters\AddVariations;
+use Shopee\Nodes\Item\Parameters\Delete;
 use Shopee\Nodes\NodeAbstract;
 use Shopee\RequestParametersInterface;
 use Shopee\ResponseData;
@@ -27,7 +29,7 @@ class Item extends NodeAbstract
     }
 
     /**
-     * @param array|RequestParametersInterface $parameters
+     * @param array|AddVariations $parameters
      * @return ResponseData
      */
     public function addVariations($parameters = []): ResponseData
@@ -36,7 +38,7 @@ class Item extends NodeAbstract
     }
 
     /**
-     * @param array|RequestParametersInterface $parameters
+     * @param array|Delete $parameters
      * @return ResponseData
      */
     public function delete($parameters = []): ResponseData
