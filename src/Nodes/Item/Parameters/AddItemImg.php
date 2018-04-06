@@ -7,7 +7,10 @@ use Shopee\RequestParameters;
 class AddItemImg extends RequestParameters
 {
     use ItemTrait;
-    
+
+    /**
+     * @return string[]
+     */
     public function getImages(): array
     {
         return $this->parameters['images'];

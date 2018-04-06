@@ -2,8 +2,6 @@
 
 namespace Shopee\Nodes\Item;
 
-use Shopee\Nodes\Item\Parameters\AddVariations;
-use Shopee\Nodes\Item\Parameters\Delete;
 use Shopee\Nodes\NodeAbstract;
 use Shopee\RequestParametersInterface;
 use Shopee\ResponseData;
@@ -20,7 +18,7 @@ class Item extends NodeAbstract
     }
 
     /**
-     * @param array|RequestParametersInterface $parameters
+     * @param array|Parameters\AddItemImg $parameters
      * @return ResponseData
      */
     public function addItemImg($parameters = []): ResponseData
@@ -29,7 +27,7 @@ class Item extends NodeAbstract
     }
 
     /**
-     * @param array|AddVariations $parameters
+     * @param array|Parameters\AddVariations $parameters
      * @return ResponseData
      */
     public function addVariations($parameters = []): ResponseData
@@ -38,7 +36,7 @@ class Item extends NodeAbstract
     }
 
     /**
-     * @param array|Delete $parameters
+     * @param array|Parameters\Delete $parameters
      * @return ResponseData
      */
     public function delete($parameters = []): ResponseData
@@ -47,7 +45,7 @@ class Item extends NodeAbstract
     }
 
     /**
-     * @param array|RequestParametersInterface $parameters
+     * @param array|Parameters\DeleteItemImg $parameters
      * @return ResponseData
      */
     public function deleteItemImg($parameters = []): ResponseData
@@ -56,7 +54,7 @@ class Item extends NodeAbstract
     }
 
     /**
-     * @param array|RequestParametersInterface $parameters
+     * @param array|Parameters\DeleteVariation $parameters
      * @return ResponseData
      */
     public function deleteVariation($parameters = []): ResponseData
@@ -65,7 +63,7 @@ class Item extends NodeAbstract
     }
 
     /**
-     * @param array|RequestParametersInterface $parameters
+     * @param array|Parameters\GetAttributes $parameters
      * @return ResponseData
      */
     public function getAttributes($parameters = []): ResponseData
@@ -74,7 +72,7 @@ class Item extends NodeAbstract
     }
 
     /**
-     * @param array|RequestParametersInterface $parameters
+     * @param array $parameters
      * @return ResponseData
      */
     public function getCategories($parameters = []): ResponseData

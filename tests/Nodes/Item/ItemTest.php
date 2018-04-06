@@ -56,6 +56,36 @@ class ItemTest extends TestCase
                     'msg' => 'msg',
                 ],
             ],
+            [
+                'deleteItemImg',
+                [
+                    'item_id' => 1,
+                    'images' => [
+                        'https://example.com/image-1.png',
+                    ],
+                ],
+                [],
+            ],
+            [
+                'deleteVariation',
+                [
+                    'item_id' => 1,
+                    'variation_id' => 100,
+                ],
+                [
+                    'item_id' => 1,
+                    'variation_id' => 100,
+                    'modified_time' => 1522938000,
+                ],
+            ],
+            [
+                'getAttributes',
+                [
+                    'category_id' => 10,
+                    'language' => 'en',
+                ],
+                [],
+            ],
         ];
     }
 
