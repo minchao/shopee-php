@@ -2,6 +2,8 @@
 
 namespace Shopee;
 
+use ReflectionClass;
+
 abstract class RequestParameters implements RequestParametersInterface
 {
     /**
@@ -25,18 +27,34 @@ abstract class RequestParameters implements RequestParametersInterface
         return $name;
     }
 
-    public function fromArray(array $parameters): void
+    /**
+     * @param array $parameters
+     * @return $this
+     * @throws \ReflectionException
+     */
+    public function fromArray(array $parameters)
     {
-        foreach ($parameters as $key => $var) {
-            $setMethod = sprintf('set%s', $this->toCamelcase($key, true));
-            if (method_exists($this, $setMethod)) {
-                $this->$setMethod($parameters[$key]);
+        $reflectionClass = new ReflectionClass($this);
+
+        foreach ($parameters as $name => $parameter) {
+            $method = 'set' . $this->toCamelcase($name, true);
+            if (method_exists($this, $method)) {
+                $reflectionMethod = $reflectionClass->getMethod($method);
+                $parameterType = $reflectionMethod->getParameters()[0]->getType();
+                if ($parameterType && !$parameterType->isBuiltin()) {
+                    $className = $parameterType->getName();
+                    $parameter = new $className($parameter);
+                }
+
+                $this->$method($parameter);
 
                 continue;
             }
 
-            $this->parameters[$key] = $var;
+            $this->parameters[$name] = $parameter;
         }
+
+        return $this;
     }
 
     public function toArray(): array

@@ -6,24 +6,27 @@ abstract class RequestParameterCollection implements RequestParametersInterface
 {
     protected $parameters = [];
 
-    public function clear(): void
+    public function __construct(array $parameters = [])
     {
-        $this->parameters = [];
+        $this->fromArray($parameters);
     }
 
+    /**
+     * @param RequestParametersInterface $parameter
+     * @return $this
+     */
     public function add(RequestParametersInterface $parameter)
     {
         $this->parameters[] = $parameter;
+
+        return $this;
     }
 
-    abstract public function addFromArray(array $parameter);
-
-    public function fromArray(array $parameters): void
-    {
-        foreach ($parameters as $parameter) {
-            $this->addFromArray($parameter);
-        }
-    }
+    /**
+     * @param array $parameters
+     * @return $this
+     */
+    abstract public function fromArray(array $parameters);
 
     public function toArray(): array
     {

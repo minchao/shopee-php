@@ -9,14 +9,25 @@ class Variations extends RequestParameterCollection
 {
     /**
      * @param Variation|RequestParametersInterface $parameter
+     * @return $this
      */
     public function add(RequestParametersInterface $parameter)
     {
         parent::add($parameter);
+
+        return $this;
     }
 
-    public function addFromArray(array $parameter)
+    /**
+     * @param array $parameters
+     * @return $this
+     */
+    public function fromArray(array $parameters)
     {
-        $this->add(new Variation($parameter));
+        foreach ($parameters as $parameter) {
+            $this->add(new Variation($parameter));
+        }
+
+        return $this;
     }
 }
