@@ -99,7 +99,7 @@ class Item extends NodeAbstract
     }
 
     /**
-     * @param array|RequestParametersInterface $parameters
+     * @param array|Parameters\InsertItemImg $parameters
      * @return ResponseData
      */
     public function insertItemImg($parameters = []): ResponseData

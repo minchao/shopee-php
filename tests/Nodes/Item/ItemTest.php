@@ -86,6 +86,18 @@ class ItemTest extends TestCase
                 ],
                 [],
             ],
+            [
+                'insertItemImg',
+                [
+                    'item_id' => 1,
+                    'image_url' => 'https://example.com/image-1.png',
+                    'image_position' => 1,
+                ],
+                [
+                    'item_id' => 1,
+                    'modified_time' => 1522938000,
+                ],
+            ],
         ];
     }
 
