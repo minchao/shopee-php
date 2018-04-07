@@ -8,6 +8,8 @@ use Shopee\ResponseData;
 class Item extends NodeAbstract
 {
     /**
+     * Use this call to add a product item.
+     *
      * @param array|Parameters\Add $parameters
      * @return ResponseData
      */
@@ -17,6 +19,8 @@ class Item extends NodeAbstract
     }
 
     /**
+     * Use this call to add product item images.
+     *
      * @param array|Parameters\AddItemImg $parameters
      * @return ResponseData
      */
@@ -26,6 +30,8 @@ class Item extends NodeAbstract
     }
 
     /**
+     * Use this call to add item variations.
+     *
      * @param array|Parameters\AddVariations $parameters
      * @return ResponseData
      */
@@ -35,6 +41,8 @@ class Item extends NodeAbstract
     }
 
     /**
+     * Use this call to delete a product item.
+     *
      * @param array|Parameters\Delete $parameters
      * @return ResponseData
      */
@@ -44,6 +52,8 @@ class Item extends NodeAbstract
     }
 
     /**
+     * Use this call to delete a product item image.
+     *
      * @param array|Parameters\DeleteItemImg $parameters
      * @return ResponseData
      */
@@ -53,6 +63,8 @@ class Item extends NodeAbstract
     }
 
     /**
+     * Use this call to delete item variation.
+     *
      * @param array|Parameters\DeleteVariation $parameters
      * @return ResponseData
      */
@@ -62,6 +74,8 @@ class Item extends NodeAbstract
     }
 
     /**
+     * Use this call to get attributes of product item.
+     *
      * @param array|Parameters\GetAttributes $parameters
      * @return ResponseData
      */
@@ -71,6 +85,8 @@ class Item extends NodeAbstract
     }
 
     /**
+     * Use this call to get categories of product item.
+     *
      * @param array $parameters
      * @return ResponseData
      */
@@ -80,6 +96,8 @@ class Item extends NodeAbstract
     }
 
     /**
+     * Use this call to get detail of item.
+     *
      * @param array|Parameters\GetItemDetail $parameters
      * @return ResponseData
      */
@@ -89,6 +107,8 @@ class Item extends NodeAbstract
     }
 
     /**
+     * Use this call to get a list of items.
+     *
      * @param array|Parameters\GetItemsList $parameters
      * @return ResponseData
      */
@@ -98,6 +118,8 @@ class Item extends NodeAbstract
     }
 
     /**
+     * Use this call to add one item image in assigned position.
+     *
      * @param array|Parameters\InsertItemImg $parameters
      * @return ResponseData
      */
@@ -107,6 +129,8 @@ class Item extends NodeAbstract
     }
 
     /**
+     * Use this call to update a product item.
+     *
      * @param array|Parameters\UpdateItem $parameters
      * @return ResponseData
      */
@@ -116,6 +140,8 @@ class Item extends NodeAbstract
     }
 
     /**
+     * Use this call to update item price.
+     *
      * @param array|Parameters\UpdatePrice $parameters
      * @return ResponseData
      */
@@ -125,6 +151,8 @@ class Item extends NodeAbstract
     }
 
     /**
+     * Use this call to update item stock.
+     *
      * @param array|Parameters\UpdateStock $parameters
      * @return ResponseData
      */
@@ -134,6 +162,8 @@ class Item extends NodeAbstract
     }
 
     /**
+     * Use this call to update item variation price.
+     *
      * @param array|Parameters\UpdateVariationPrice $parameters
      * @return ResponseData
      */
@@ -143,6 +173,8 @@ class Item extends NodeAbstract
     }
 
     /**
+     * Use this call to update item variation stock.
+     *
      * @param array|Parameters\UpdateVariationStock $parameters
      * @return ResponseData
      */
