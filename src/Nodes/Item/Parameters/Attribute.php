@@ -12,10 +12,10 @@ class Attribute extends RequestParameters
     }
 
     /**
-     * @param string $attributeId
+     * @param int $attributeId
      * @return $this
      */
-    public function setAttributeId(string $attributeId)
+    public function setAttributeId(int $attributeId)
     {
         $this->parameters['attribute_id'] = $attributeId;
 

@@ -15,7 +15,7 @@ class Image extends RequestParameters
      * @param string $url
      * @return $this
      */
-    public function setName(string $url)
+    public function setUrl(string $url)
     {
         $this->parameters['url'] = $url;
 

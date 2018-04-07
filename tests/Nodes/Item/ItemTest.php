@@ -38,7 +38,7 @@ class ItemTest extends TestCase
                     ],
                     'attributes' => [
                         [
-                            'attributes_id' => 10,
+                            'attribute_id' => 10,
                             'value' => 'starship',
                         ],
                     ],

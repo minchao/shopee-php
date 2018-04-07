@@ -236,7 +236,7 @@ class Add extends RequestParameters
      * @param int $packageHeight
      * @return $this
      */
-    public function sePackageHeight(int $packageHeight)
+    public function setPackageHeight(int $packageHeight)
     {
         $this->parameters['package_height'] = $packageHeight;
 
