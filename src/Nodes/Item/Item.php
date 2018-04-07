@@ -9,7 +9,7 @@ use Shopee\ResponseData;
 class Item extends NodeAbstract
 {
     /**
-     * @param array|RequestParametersInterface $parameters
+     * @param array|Parameters\Add $parameters
      * @return ResponseData
      */
     public function add($parameters = []): ResponseData

@@ -15,6 +15,61 @@ class ItemTest extends TestCase
     {
         return [
             [
+                'add',
+                [
+                    'category_id' => 1,
+                    'name' => 'Heart of Gold',
+                    'description' => 'The starship Heart of Gold was the first spacecraft to make use of the Infinite Improbability Drive.',
+                    'price' => 100.0,
+                    'stock' => 1,
+                    'item_sku' => 'HG',
+                    'variations' => [
+                        [
+                            'name' => 'Prototype',
+                            'stock' => 1,
+                            'price' => 100.0,
+                            'variation_sku' => 'HG',
+                        ],
+                    ],
+                    'images' => [
+                        [
+                            'url' => 'https://example.com/image-1.png',
+                        ],
+                    ],
+                    'attributes' => [
+                        [
+                            'attributes_id' => 10,
+                            'value' => 'starship',
+                        ],
+                    ],
+                    'logistics' => [
+                        [
+                            'logistic_id' => 1000,
+                            'enabled' => true,
+                            'shipping_fee' => 0.0,
+                            'size_id' => 1,
+                            'is_free' => true,
+                        ],
+                    ],
+                    'weight' => 1.0,
+                    'package_length' => 15000,
+                    'package_width' => 15000,
+                    'package_height' => 15000,
+                    'days_to_ship' => 1,
+                    'wholesales' => [
+                        [
+                            'min' => 1,
+                            'max' => 1,
+                            'unit_price' => 100.0,
+                        ],
+                    ],
+                ],
+                [
+                    'item_id' => 1,
+                    'fail_image' => [],
+                ],
+            ],
+            [
                 'addItemImg',
                 [
                     'item_id' => 1,
