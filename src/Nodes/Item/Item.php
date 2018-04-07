@@ -3,7 +3,6 @@
 namespace Shopee\Nodes\Item;
 
 use Shopee\Nodes\NodeAbstract;
-use Shopee\RequestParametersInterface;
 use Shopee\ResponseData;
 
 class Item extends NodeAbstract
@@ -108,7 +107,7 @@ class Item extends NodeAbstract
     }
 
     /**
-     * @param array|RequestParametersInterface $parameters
+     * @param array|Parameters\UpdateItem $parameters
      * @return ResponseData
      */
     public function updateItem($parameters = []): ResponseData
