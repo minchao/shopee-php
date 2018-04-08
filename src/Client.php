@@ -24,7 +24,7 @@ use Shopee\Exception\Api\ServerException;
  */
 class Client
 {
-    public const VERSION = '0.0.0';
+    public const VERSION = '0.0.1';
 
     public const DEFAULT_BASE_URL = 'https://partner.shopeemobile.com/api/v1/';
 
