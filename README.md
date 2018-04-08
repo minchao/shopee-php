@@ -17,7 +17,7 @@ This is a [Shopee Partner API](https://partner.shopeemobile.com/docs/) Client fo
 Execute the following command to get the package:
 
 ```
-composer require minchao/shopee-php
+$ composer require minchao/shopee-php
 ```
 
 ## Usage
@@ -36,9 +36,21 @@ $client = new \Shopee\Client([
 ]);
 ```
 
-### Examples
+## Examples
 
-TODO
+### Get detail of item
+
+```php
+$response = $client->item->getItemDetail(['item_id' => 1978]);
+```
+
+Alternatively, you can also use the parameter model within request.
+
+```php
+$parameters = (new \Shopee\Nodes\Item\Parameters\GetItemDetail())
+    ->setItemId(1978);
+$response = $client->item->getItemDetail($parameters);
+```
 
 ## License
 
