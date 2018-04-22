@@ -2,10 +2,10 @@
 
 namespace Shopee\Tests;
 
+use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use function GuzzleHttp\Psr7\uri_for;
 use Psr\Http\Message\UriInterface;
 use Shopee\Client;
 use PHPUnit\Framework\TestCase;
@@ -13,6 +13,8 @@ use Shopee\Exception\Api\ApiException;
 use Shopee\Exception\Api\BadRequestException;
 use Shopee\Exception\Api\ClientException;
 use Shopee\Exception\Api\ServerException;
+
+use function GuzzleHttp\Psr7\uri_for;
 
 class ClientTest extends TestCase
 {
@@ -32,7 +34,7 @@ class ClientTest extends TestCase
     public function testCreateClientWithConfig()
     {
         $config = [
-            'httpClient' => new \GuzzleHttp\Client(['ping' => 'pong']),
+            'httpClient' => new HttpClient(['ping' => 'pong']),
             'baseUrl' => 'https://galaxy.com/',
             'userAgent' => 'HeartOfGold/Prototype',
         ];

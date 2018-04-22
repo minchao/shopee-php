@@ -2,12 +2,13 @@
 
 namespace Shopee;
 
+use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ClientException as GuzzleClientException;
 use GuzzleHttp\Exception\ServerException as GuzzleServerException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
-use function GuzzleHttp\Psr7\uri_for;
+use InvalidArgumentException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UriInterface;
@@ -18,6 +19,15 @@ use Shopee\Exception\Api\BadRequestException;
 use Shopee\Exception\Api\ClientException;
 use Shopee\Exception\Api\Factory;
 use Shopee\Exception\Api\ServerException;
+
+use function array_key_exists;
+use function array_merge;
+use function getenv;
+use function GuzzleHttp\Psr7\uri_for;
+use function hash_hmac;
+use function json_encode;
+use function time;
+use function rtrim;
 
 /**
  * @property Nodes\Item\Item item
@@ -68,7 +78,7 @@ class Client
             'shopid' => getenv(self::ENV_SHOP_ID_NAME),
         ], $config);
 
-        $this->httpClient = $config['httpClient'] ?: new \GuzzleHttp\Client();
+        $this->httpClient = $config['httpClient'] ?: new HttpClient();
         $this->setBaseUrl($config['baseUrl']);
         $this->setUserAgent($config['userAgent']);
         $this->secret = $config['secret'];
@@ -81,7 +91,7 @@ class Client
     public function __get(string $name)
     {
         if (!array_key_exists($name, $this->nodes)) {
-            throw new \InvalidArgumentException(sprintf('Property "%s" not exists', $name));
+            throw new InvalidArgumentException(sprintf('Property "%s" not exists', $name));
         }
 
         return $this->nodes[$name];

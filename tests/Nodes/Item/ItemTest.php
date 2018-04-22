@@ -7,6 +7,11 @@ use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Shopee\Tests\ClientTrait;
 
+use function array_diff_assoc;
+use function json_decode;
+use function json_encode;
+use function ucfirst;
+
 class ItemTest extends TestCase
 {
     use ClientTrait;

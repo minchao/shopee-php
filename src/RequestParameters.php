@@ -4,6 +4,13 @@ namespace Shopee;
 
 use ReflectionClass;
 
+use function array_map;
+use function ksort;
+use function lcfirst;
+use function method_exists;
+use function str_replace;
+use function ucwords;
+
 abstract class RequestParameters implements RequestParametersInterface
 {
     /**

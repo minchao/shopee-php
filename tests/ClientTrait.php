@@ -9,6 +9,9 @@ use GuzzleHttp\Psr7\Response;
 use Shopee\Client;
 use GuzzleHttp\Client as HttpClient;
 
+use function is_array;
+use function array_merge;
+
 trait ClientTrait
 {
     protected $defaultConfig = [

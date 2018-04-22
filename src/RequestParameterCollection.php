@@ -2,6 +2,8 @@
 
 namespace Shopee;
 
+use function array_map;
+
 abstract class RequestParameterCollection implements RequestParametersInterface
 {
     protected $parameters = [];

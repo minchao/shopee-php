@@ -4,6 +4,8 @@ namespace Shopee;
 
 use Psr\Http\Message\ResponseInterface;
 
+use function json_decode;
+
 class ResponseData
 {
     /** @var ResponseInterface */
