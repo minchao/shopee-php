@@ -10,7 +10,8 @@ This is a [Shopee Partner API](https://partner.shopeemobile.com/docs/) Client fo
 ## Requirements
 
 * PHP >= 7.1
-* [Guzzle](http://guzzle.readthedocs.io/en/latest/overview.html#requirements)
+* [Composer](https://getcomposer.org/download/)
+* [Guzzle](https://guzzle.readthedocs.io/en/latest/overview.html#requirements)
 
 ## Installation
 
@@ -22,7 +23,7 @@ $ composer require minchao/shopee-php
 
 ## Usage
 
-Construct a new client, then use to access the Shopee Partner API.
+Create an instance of the Shopee client, then use to access the Shopee Partner API.
 
 ```php
 <?php
