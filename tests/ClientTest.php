@@ -54,11 +54,11 @@ class ClientTest extends TestCase
             'POST',
             Client::DEFAULT_BASE_URL . '/api/v1/orders/detail',
             [
-                'Authorization' => '1ea6dc7dea95f4f7da9f5172d1f9320f21f4eda79176395870797905854e57c0',
+                'Authorization' => '7f8239f14aa84c8ff59c61c4b728e08a44f5ff756064da74678b2f5162ac9116',
                 'User-Agent' => Client::DEFAULT_USER_AGENT,
                 'Content-Type' => 'application/json',
             ],
-            '{"partner_id":1,"shopid":10000,"timestamp":1517755590,"ordersn":"160726152598865"}'
+            '{"partner_id":1,"shopid":61299,"timestamp":1470198856,"ordersn":"160726152598865"}'
         );
 
         $actual = $this->createClient()->newRequest(
@@ -66,8 +66,8 @@ class ClientTest extends TestCase
             [],
             [
                 'partner_id' => 1,
-                'shopid' => 10000,
-                'timestamp' => 1517755590,
+                'shopid' => 61299,
+                'timestamp' => 1470198856,
                 'ordersn' => '160726152598865',
             ]
         );
