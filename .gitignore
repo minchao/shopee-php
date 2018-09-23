@@ -1,11 +1,11 @@
 # Composer files
-vendor/
-composer.lock
+/vendor/
+/composer.lock
 
 # PHPUnit
-build/
+/build/
 # see https://stackoverflow.com/a/44764078
-phpunit.xml
+/phpunit.xml
 
 # IntelliJ IDEA project files
-.idea/
+/.idea/
