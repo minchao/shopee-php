@@ -52,7 +52,7 @@ class ClientTest extends TestCase
     {
         $expected = new Request(
             'POST',
-            Client::DEFAULT_BASE_URL . 'orders/detail',
+            Client::DEFAULT_BASE_URL . '/api/v1/orders/detail',
             [
                 'Authorization' => '1ea6dc7dea95f4f7da9f5172d1f9320f21f4eda79176395870797905854e57c0',
                 'User-Agent' => Client::DEFAULT_USER_AGENT,
@@ -62,7 +62,7 @@ class ClientTest extends TestCase
         );
 
         $actual = $this->createClient()->newRequest(
-            'orders/detail',
+            '/api/v1/orders/detail',
             [],
             [
                 'partner_id' => 1,
@@ -85,7 +85,7 @@ class ClientTest extends TestCase
             [
                 'https://galaxy.com/',
                 '',
-                'https://galaxy.com',
+                'https://galaxy.com/',
             ],
             [
                 'https://galaxy.com/',

@@ -16,7 +16,7 @@ class Returns extends NodeAbstract
      */
     public function confirmReturn($parameters = []): ResponseData
     {
-        return $this->post('api/v1/returns/confirm', $parameters);
+        return $this->post('/api/v1/returns/confirm', $parameters);
     }
 
     /**
@@ -27,7 +27,7 @@ class Returns extends NodeAbstract
      */
     public function disputeReturn($parameters = []): ResponseData
     {
-        return $this->post('api/v1/returns/dispute', $parameters);
+        return $this->post('/api/v1/returns/dispute', $parameters);
     }
 
     /**
@@ -38,6 +38,6 @@ class Returns extends NodeAbstract
      */
     public function getReturnList($parameters = []): ResponseData
     {
-        return $this->post('api/v1/returns/get', $parameters);
+        return $this->post('/api/v1/returns/get', $parameters);
     }
 }

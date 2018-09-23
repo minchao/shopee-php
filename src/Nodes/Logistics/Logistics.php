@@ -16,7 +16,7 @@ class Logistics extends NodeAbstract
      */
     public function getAddress($parameters = []): ResponseData
     {
-        return $this->post('api/v1/logistics/address/get', $parameters);
+        return $this->post('/api/v1/logistics/address/get', $parameters);
     }
 
     /**
@@ -27,7 +27,7 @@ class Logistics extends NodeAbstract
      */
     public function getAirwayBill($parameters = []): ResponseData
     {
-        return $this->post('api/v1/logistics/airway_bill/get_mass', $parameters);
+        return $this->post('/api/v1/logistics/airway_bill/get_mass', $parameters);
     }
 
     /**
@@ -38,7 +38,7 @@ class Logistics extends NodeAbstract
      */
     public function getBranch($parameters = []): ResponseData
     {
-        return $this->post('api/v1/logistics/branch/get', $parameters);
+        return $this->post('/api/v1/logistics/branch/get', $parameters);
     }
 
     /**
@@ -49,7 +49,7 @@ class Logistics extends NodeAbstract
      */
     public function getLogistics($parameters = []): ResponseData
     {
-        return $this->post('api/v1/logistics/channel/get', $parameters);
+        return $this->post('/api/v1/logistics/channel/get', $parameters);
     }
 
     /**
@@ -60,7 +60,7 @@ class Logistics extends NodeAbstract
      */
     public function getLogisticsMessage($parameters = []): ResponseData
     {
-        return $this->post('api/v1/logistics/tracking', $parameters);
+        return $this->post('/api/v1/logistics/tracking', $parameters);
     }
 
     /**
@@ -71,7 +71,7 @@ class Logistics extends NodeAbstract
      */
     public function getOrderLogistics($parameters = []): ResponseData
     {
-        return $this->post('api/v1/logistics/order/get', $parameters);
+        return $this->post('/api/v1/logistics/order/get', $parameters);
     }
 
     /**
@@ -82,7 +82,7 @@ class Logistics extends NodeAbstract
      */
     public function getParameterForInit($parameters = []): ResponseData
     {
-        return $this->post('api/v1/logistics/init_parameter/get', $parameters);
+        return $this->post('/api/v1/logistics/init_parameter/get', $parameters);
     }
 
     /**
@@ -93,7 +93,7 @@ class Logistics extends NodeAbstract
      */
     public function getTimeSlot($parameters = []): ResponseData
     {
-        return $this->post('api/v1/logistics/timeslot/get', $parameters);
+        return $this->post('/api/v1/logistics/timeslot/get', $parameters);
     }
 
     /**
@@ -104,7 +104,7 @@ class Logistics extends NodeAbstract
      */
     public function getTrackingNo($parameters = []): ResponseData
     {
-        return $this->post('api/v1/logistics/tracking_number/get_mass', $parameters);
+        return $this->post('/api/v1/logistics/tracking_number/get_mass', $parameters);
     }
 
     /**
@@ -115,7 +115,7 @@ class Logistics extends NodeAbstract
      */
     public function init($parameters = []): ResponseData
     {
-        return $this->post('api/v1/logistics/init', $parameters);
+        return $this->post('/api/v1/logistics/init', $parameters);
     }
 
     /**
@@ -126,7 +126,7 @@ class Logistics extends NodeAbstract
      */
     public function setLogisticStatus($parameters = []): ResponseData
     {
-        return $this->post('api/v1/logistics/offline/set', $parameters);
+        return $this->post('/api/v1/logistics/offline/set', $parameters);
     }
 
     /**
@@ -137,6 +137,6 @@ class Logistics extends NodeAbstract
      */
     public function setTrackingNo($parameters = []): ResponseData
     {
-        return $this->post('api/v1/logistics/tracking_number/set_mass', $parameters);
+        return $this->post('/api/v1/logistics/tracking_number/set_mass', $parameters);
     }
 }

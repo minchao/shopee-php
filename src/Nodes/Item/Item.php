@@ -15,7 +15,7 @@ class Item extends NodeAbstract
      */
     public function add($parameters = []): ResponseData
     {
-        return $this->post('api/v1/item/get', $parameters);
+        return $this->post('/api/v1/item/get', $parameters);
     }
 
     /**
@@ -26,7 +26,7 @@ class Item extends NodeAbstract
      */
     public function addItemImg($parameters = []): ResponseData
     {
-        return $this->post('api/v1/item/img/add', $parameters);
+        return $this->post('/api/v1/item/img/add', $parameters);
     }
 
     /**
@@ -37,7 +37,7 @@ class Item extends NodeAbstract
      */
     public function addVariations($parameters = []): ResponseData
     {
-        return $this->post('api/v1/item/add_variations', $parameters);
+        return $this->post('/api/v1/item/add_variations', $parameters);
     }
 
     /**
@@ -48,7 +48,7 @@ class Item extends NodeAbstract
      */
     public function delete($parameters = []): ResponseData
     {
-        return $this->post('api/v1/item/delete', $parameters);
+        return $this->post('/api/v1/item/delete', $parameters);
     }
 
     /**
@@ -59,7 +59,7 @@ class Item extends NodeAbstract
      */
     public function deleteItemImg($parameters = []): ResponseData
     {
-        return $this->post('api/v1/item/img/delete', $parameters);
+        return $this->post('/api/v1/item/img/delete', $parameters);
     }
 
     /**
@@ -70,7 +70,7 @@ class Item extends NodeAbstract
      */
     public function deleteVariation($parameters = []): ResponseData
     {
-        return $this->post('api/v1/item/delete_variation', $parameters);
+        return $this->post('/api/v1/item/delete_variation', $parameters);
     }
 
     /**
@@ -81,7 +81,7 @@ class Item extends NodeAbstract
      */
     public function getAttributes($parameters = []): ResponseData
     {
-        return $this->post('api/v1/item/attributes/get', $parameters);
+        return $this->post('/api/v1/item/attributes/get', $parameters);
     }
 
     /**
@@ -92,7 +92,7 @@ class Item extends NodeAbstract
      */
     public function getCategories($parameters = []): ResponseData
     {
-        return $this->post('api/v1/item/categories/get', $parameters);
+        return $this->post('/api/v1/item/categories/get', $parameters);
     }
 
     /**
@@ -103,7 +103,7 @@ class Item extends NodeAbstract
      */
     public function getItemDetail($parameters = []): ResponseData
     {
-        return $this->post('api/v1/item/get', $parameters);
+        return $this->post('/api/v1/item/get', $parameters);
     }
 
     /**
@@ -114,7 +114,7 @@ class Item extends NodeAbstract
      */
     public function getItemsList($parameters = []): ResponseData
     {
-        return $this->post('api/v1/items/get', $parameters);
+        return $this->post('/api/v1/items/get', $parameters);
     }
 
     /**
@@ -125,7 +125,7 @@ class Item extends NodeAbstract
      */
     public function insertItemImg($parameters = []): ResponseData
     {
-        return $this->post('api/v1/item/img/insert', $parameters);
+        return $this->post('/api/v1/item/img/insert', $parameters);
     }
 
     /**
@@ -136,7 +136,7 @@ class Item extends NodeAbstract
      */
     public function updateItem($parameters = []): ResponseData
     {
-        return $this->post('api/v1/item/update', $parameters);
+        return $this->post('/api/v1/item/update', $parameters);
     }
 
     /**
@@ -147,7 +147,7 @@ class Item extends NodeAbstract
      */
     public function updatePrice($parameters = []): ResponseData
     {
-        return $this->post('api/v1/items/update_price', $parameters);
+        return $this->post('/api/v1/items/update_price', $parameters);
     }
 
     /**
@@ -158,7 +158,7 @@ class Item extends NodeAbstract
      */
     public function updateStock($parameters = []): ResponseData
     {
-        return $this->post('api/v1/items/update_stock', $parameters);
+        return $this->post('/api/v1/items/update_stock', $parameters);
     }
 
     /**
@@ -169,7 +169,7 @@ class Item extends NodeAbstract
      */
     public function updateVariationPrice($parameters = []): ResponseData
     {
-        return $this->post('api/v1/items/update_variation_price', $parameters);
+        return $this->post('/api/v1/items/update_variation_price', $parameters);
     }
 
     /**
@@ -180,6 +180,6 @@ class Item extends NodeAbstract
      */
     public function updateVariationStock($parameters = []): ResponseData
     {
-        return $this->post('api/v1/items/update_variation_stock', $parameters);
+        return $this->post('/api/v1/items/update_variation_stock', $parameters);
     }
 }

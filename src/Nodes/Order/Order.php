@@ -16,7 +16,7 @@ class Order extends NodeAbstract
      */
     public function getEscrowDetails($parameters = []): ResponseData
     {
-        return $this->post('api/v1/orders/my_income', $parameters);
+        return $this->post('/api/v1/orders/my_income', $parameters);
     }
 
     /**
@@ -27,7 +27,7 @@ class Order extends NodeAbstract
      */
     public function getOrderDetails($parameters = []): ResponseData
     {
-        return $this->post('api/v1/orders/detail', $parameters);
+        return $this->post('/api/v1/orders/detail', $parameters);
     }
 
     /**
@@ -38,7 +38,7 @@ class Order extends NodeAbstract
      */
     public function getOrdersByStatus($parameters = []): ResponseData
     {
-        return $this->post('api/v1/orders/get', $parameters);
+        return $this->post('/api/v1/orders/get', $parameters);
     }
 
     /**
@@ -49,7 +49,7 @@ class Order extends NodeAbstract
      */
     public function getOrdersList($parameters = []): ResponseData
     {
-        return $this->post('api/v1/orders/basics', $parameters);
+        return $this->post('/api/v1/orders/basics', $parameters);
     }
 
     /**
@@ -60,7 +60,7 @@ class Order extends NodeAbstract
      */
     public function acceptBuyerCancellation($parameters = []): ResponseData
     {
-        return $this->post('api/v1/orders/buyer_cancellation/accept', $parameters);
+        return $this->post('/api/v1/orders/buyer_cancellation/accept', $parameters);
     }
 
     /**
@@ -71,7 +71,7 @@ class Order extends NodeAbstract
      */
     public function addOrderNote($parameters = []): ResponseData
     {
-        return $this->post('api/v1/orders/note/add', $parameters);
+        return $this->post('/api/v1/orders/note/add', $parameters);
     }
 
     /**
@@ -82,7 +82,7 @@ class Order extends NodeAbstract
      */
     public function cancelOrder($parameters = []): ResponseData
     {
-        return $this->post('api/v1/orders/cancel', $parameters);
+        return $this->post('/api/v1/orders/cancel', $parameters);
     }
 
     /**
@@ -93,6 +93,6 @@ class Order extends NodeAbstract
      */
     public function rejectBuyerCancellation($parameters = []): ResponseData
     {
-        return $this->post('api/v1/orders/buyer_cancellation/reject', $parameters);
+        return $this->post('/api/v1/orders/buyer_cancellation/reject', $parameters);
     }
 }

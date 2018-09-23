@@ -16,7 +16,7 @@ class Shop extends NodeAbstract
      */
     public function getShopInfo($parameters = []): ResponseData
     {
-        return $this->post('api/v1/shop/get', $parameters);
+        return $this->post('/api/v1/shop/get', $parameters);
     }
 
     /**
@@ -27,6 +27,6 @@ class Shop extends NodeAbstract
      */
     public function updateShopInfo($parameters = []): ResponseData
     {
-        return $this->post('api/v1/shop/update', $parameters);
+        return $this->post('/api/v1/shop/update', $parameters);
     }
 }

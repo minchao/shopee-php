@@ -36,7 +36,7 @@ class Client
 {
     public const VERSION = '0.0.1';
 
-    public const DEFAULT_BASE_URL = 'https://partner.shopeemobile.com/api/v1/';
+    public const DEFAULT_BASE_URL = 'https://partner.shopeemobile.com';
 
     public const DEFAULT_USER_AGENT = 'shopee-php/' . self::VERSION;
 
@@ -193,7 +193,7 @@ class Client
     public function newRequest($uri, array $headers = [], $data = []): RequestInterface
     {
         $uri = uri_for($uri);
-        $path = rtrim($this->baseUrl->getPath() . $uri->getPath(), '/');
+        $path = $this->baseUrl->getPath() . $uri->getPath();
 
         $uri = $uri
             ->withScheme($this->baseUrl->getScheme())
