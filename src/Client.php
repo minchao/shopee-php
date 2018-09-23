@@ -27,7 +27,6 @@ use function GuzzleHttp\Psr7\uri_for;
 use function hash_hmac;
 use function json_encode;
 use function time;
-use function rtrim;
 
 /**
  * @property Nodes\Item\Item item
