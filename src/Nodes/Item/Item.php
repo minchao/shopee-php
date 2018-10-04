@@ -15,7 +15,7 @@ class Item extends NodeAbstract
      */
     public function add($parameters = []): ResponseData
     {
-        return $this->post('/api/v1/item/get', $parameters);
+        return $this->post('/api/v1/item/add', $parameters);
     }
 
     /**

@@ -33,7 +33,7 @@ use function time;
  */
 class Client
 {
-    public const VERSION = '0.0.2';
+    public const VERSION = '0.0.3';
 
     public const DEFAULT_BASE_URL = 'https://partner.shopeemobile.com';
 
