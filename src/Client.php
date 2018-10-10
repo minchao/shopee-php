@@ -77,8 +77,8 @@ class Client
             'baseUrl' => self::DEFAULT_BASE_URL,
             'userAgent' => self::DEFAULT_USER_AGENT,
             'secret' => getenv(self::ENV_SECRET_NAME),
-            'partner_id' => getenv(self::ENV_PARTNER_ID_NAME),
-            'shopid' => getenv(self::ENV_SHOP_ID_NAME),
+            'partner_id' => (int)getenv(self::ENV_PARTNER_ID_NAME),
+            'shopid' => (int)getenv(self::ENV_SHOP_ID_NAME),
         ], $config);
 
         $this->httpClient = $config['httpClient'] ?: new HttpClient();
