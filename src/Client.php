@@ -30,10 +30,14 @@ use function time;
 
 /**
  * @property Nodes\Item\Item item
+ * @Property Nodes\Logistics\Logistics logistics
+ * @Property Nodes\Order\Order order
+ * @Property Nodes\Returns\Returns returns
+ * @Property Nodes\Shop\Shop shop
  */
 class Client
 {
-    public const VERSION = '0.0.3';
+    public const VERSION = '0.0.4';
 
     public const DEFAULT_BASE_URL = 'https://partner.shopeemobile.com';
 
@@ -85,6 +89,10 @@ class Client
         $this->shopId = $config['shopid'];
 
         $this->nodes['item'] = new Nodes\Item\Item($this);
+        $this->nodes['logistics'] = new Nodes\Logistics\Logistics($this);
+        $this->nodes['order'] = new Nodes\Order\Order($this);
+        $this->nodes['returns'] = new Nodes\Returns\Returns($this);
+        $this->nodes['shop'] = new Nodes\Shop\Shop($this);
     }
 
     public function __get(string $name)
