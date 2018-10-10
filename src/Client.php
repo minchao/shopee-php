@@ -30,10 +30,10 @@ use function time;
 
 /**
  * @property Nodes\Item\Item item
- * @Property Nodes\Logistics\Logistics logistics
- * @Property Nodes\Order\Order order
- * @Property Nodes\Returns\Returns returns
- * @Property Nodes\Shop\Shop shop
+ * @property Nodes\Logistics\Logistics logistics
+ * @property Nodes\Order\Order order
+ * @property Nodes\Returns\Returns returns
+ * @property Nodes\Shop\Shop shop
  */
 class Client
 {
