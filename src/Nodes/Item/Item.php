@@ -182,4 +182,15 @@ class Item extends NodeAbstract
     {
         return $this->post('/api/v1/items/update_variation_stock', $parameters);
     }
+
+    /**
+     * Use this call to unlist or list items in batch.
+     *
+     * @param array|Parameters\UpdateVariationStock $parameters
+     * @return ResponseData
+     */
+    public function unlistItem($parameters = []): ResponseData
+    {
+        return $this->post('/api/v1/items/unlist', $parameters);
+    }
 }
