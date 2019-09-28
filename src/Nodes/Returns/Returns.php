@@ -40,4 +40,15 @@ class Returns extends NodeAbstract
     {
         return $this->post('/api/v1/returns/get', $parameters);
     }
+
+    /**
+     * Use this api to get detail information of a returned order.
+     *
+     * @param array|RequestParametersInterface $parameters
+     * @return ResponseData
+     */
+    public function getReturnDetail($parameters = []): ResponseData
+    {
+        return $this->post('/api/v1/returns/detail', $parameters);
+    }
 }

@@ -20,6 +20,28 @@ class Shop extends NodeAbstract
     }
 
     /**
+     * Shop performance includes the indexes from "My Performance" of Seller Center.
+     *
+     * @param array|RequestParametersInterface $parameters
+     * @return ResponseData
+     */
+    public function performance($parameters = []): ResponseData
+    {
+        return $this->post('/api/v1/shop/performance', $parameters);
+    }
+
+    /**
+     * Only for TW whitelisted shop.Use this API to set the installment status of shop.
+     *
+     * @param array|RequestParametersInterface $parameters
+     * @return ResponseData
+     */
+    public function setShopInstallmentStatus($parameters = []): ResponseData
+    {
+        return $this->post('/api/v1/shop/set_installment_status', $parameters);
+    }
+
+    /**
      * Use this call to update information of shop.
      *
      * @param array|RequestParametersInterface $parameters

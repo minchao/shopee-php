@@ -20,6 +20,29 @@ class Order extends NodeAbstract
     }
 
     /**
+     * Use this api to get orders' release time and escrow amount.
+     *
+     * @param array|RequestParametersInterface $parameters
+     * @return ResponseData
+     */
+    public function getEscrowReleasedOrders($parameters = []): ResponseData
+    {
+        return $this->post('/api/v1/orders/get_escrow_detail', $parameters);
+    }
+
+    /**
+     * Use this call to retrieve detailed information of all the fulfill orders(forder) under a single regular order
+     * based on ordersn.
+     *
+     * @param array|RequestParametersInterface $parameters
+     * @return ResponseData
+     */
+    public function getForderInfo($parameters = []): ResponseData
+    {
+        return $this->post('/api/v1/orders/forder/get', $parameters);
+    }
+
+    /**
      * Use this call to retrieve detailed information about one or more orders based on OrderIDs.
      *
      * @param array|RequestParametersInterface $parameters
@@ -94,5 +117,27 @@ class Order extends NodeAbstract
     public function rejectBuyerCancellation($parameters = []): ResponseData
     {
         return $this->post('/api/v1/orders/buyer_cancellation/reject', $parameters);
+    }
+
+    /**
+     * Use this API to split order into fulfillment orders.
+     *
+     * @param array|RequestParametersInterface $parameters
+     * @return ResponseData
+     */
+    public function splitOrder($parameters = []): ResponseData
+    {
+        return $this->post('/api/v1/orders/split', $parameters);
+    }
+
+    /**
+     * Use this API to cancel split order from the seller side.
+     *
+     * @param array|RequestParametersInterface $parameters
+     * @return ResponseData
+     */
+    public function undoSplitOrder($parameters = []): ResponseData
+    {
+        return $this->post('/api/v1/orders/unsplit', $parameters);
     }
 }

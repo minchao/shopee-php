@@ -42,6 +42,17 @@ class Logistics extends NodeAbstract
     }
 
     /**
+     * Use this API to get airwaybill for fulfillment orders.
+     *
+     * @param array|RequestParametersInterface $parameters
+     * @return ResponseData
+     */
+    public function getForderWaybill($parameters = []): ResponseData
+    {
+        return $this->post('/api/v1/logistics/forder_waybill/get_mass', $parameters);
+    }
+
+    /**
      * Use this call to get all supported Logistic Channel.
      *
      * @param array|RequestParametersInterface $parameters
@@ -50,6 +61,17 @@ class Logistics extends NodeAbstract
     public function getLogistics($parameters = []): ResponseData
     {
         return $this->post('/api/v1/logistics/channel/get', $parameters);
+    }
+
+    /**
+     * Get all the logistics info of an order to Init.
+     *
+     * @param array|RequestParametersInterface $parameters
+     * @return ResponseData
+     */
+    public function getLogisticInfo($parameters = []): ResponseData
+    {
+        return $this->post('/api/v1/logistics/init_info/get', $parameters);
     }
 
     /**
@@ -130,7 +152,7 @@ class Logistics extends NodeAbstract
     }
 
     /**
-     * User this call to set tracking number for each order in batch.
+     * Use this call to set tracking number for each order in batch.
      *
      * @param array|RequestParametersInterface $parameters
      * @return ResponseData
@@ -138,5 +160,16 @@ class Logistics extends NodeAbstract
     public function setTrackingNo($parameters = []): ResponseData
     {
         return $this->post('/api/v1/logistics/tracking_number/set_mass', $parameters);
+    }
+
+    /**
+     * Configure shop level logistics.
+     *
+     * @param array|RequestParametersInterface $parameters $parameters
+     * @return ResponseData
+     */
+    public function updateShopLogistics($parameters = []): ResponseData
+    {
+        return $this->post('/api/v1/logistics/channels/update', $parameters);
     }
 }
