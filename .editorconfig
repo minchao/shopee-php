@@ -1,4 +1,4 @@
-# EditorConfig is awesome: http://EditorConfig.org
+# EditorConfig is awesome: https://EditorConfig.org
 
 # top-most EditorConfig file
 root = true
@@ -14,5 +14,10 @@ indent_style = space
 indent_size = 4
 
 [*.{json,yml}]
+indent_style = space
+indent_size = 2
+
+[*.{xml,xml.dist}]
+max_line_length = off
 indent_style = space
 indent_size = 2
