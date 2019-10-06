@@ -140,6 +140,17 @@ class Item extends NodeAbstract
     }
 
     /**
+     * Override and update all the existing images of an item.
+     *
+     * @param array|Parameters\UpdateItemImg $parameters
+     * @return ResponseData
+     */
+    public function updateItemImage($parameters = []): ResponseData
+    {
+        return $this->post('/api/v1/item/update', $parameters);
+    }
+
+    /**
      * Use this call to update item price.
      *
      * @param array|Parameters\UpdatePrice $parameters
