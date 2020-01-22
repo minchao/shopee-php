@@ -5,7 +5,7 @@
 [![Latest Unstable Version](https://poser.pugx.org/minchao/shopee-php/v/unstable)](https://packagist.org/packages/minchao/shopee-php)
 [![composer.lock](https://poser.pugx.org/minchao/shopee-php/composerlock)](https://packagist.org/packages/minchao/shopee-php)
 
-This is a [Shopee Partner API](https://partner.shopeemobile.com/docs/) Client for PHP.
+This is a [Shopee Partner API](https://open.shopee.com/documents) Client for PHP.
 
 ## Requirements
 
@@ -33,7 +33,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 $client = new \Shopee\Client([
     'secret' => SHOPEE_SECRET,
     'partner_id' => SHOPEE_PARTNER_ID,
-    'shopid' => SHOPEE_SHOP_ID, 
+    'shopid' => SHOPEE_SHOP_ID,
 ]);
 ```
 
