@@ -23,6 +23,7 @@ install:
 
 script:
   - composer run lint
+  - composer run phpstan
   - composer run test
 
 notifications:

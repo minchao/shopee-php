@@ -17,6 +17,7 @@
     "guzzlehttp/guzzle": "^6.3"
   },
   "require-dev": {
+    "phpstan/phpstan": "^0.12.7",
     "phpunit/phpunit": "^7.5",
     "squizlabs/php_codesniffer": "^3.5"
   },
@@ -40,6 +41,7 @@
     ],
     "lint": "phpcs",
     "lint-fix": "phpcbf",
+    "phpstan": "phpstan analyse src --level=1",
     "test": "phpunit",
     "coverage-html": "phpunit --coverage-html=build/coverage-html"
   }
