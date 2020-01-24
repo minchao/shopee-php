@@ -94,6 +94,7 @@ class Client
         $this->nodes['order'] = new Nodes\Order\Order($this);
         $this->nodes['returns'] = new Nodes\Returns\Returns($this);
         $this->nodes['shop'] = new Nodes\Shop\Shop($this);
+        $this->nodes['shopCategory'] = new Nodes\Shop\ShopCategory($this);
         $this->nodes['discount'] = new Nodes\Discount\Discount($this);
     }
 
