@@ -35,6 +35,7 @@ use function time;
  * @property Nodes\Returns\Returns returns
  * @property Nodes\Shop\Shop shop
  * @property Nodes\Discount\Discount discount
+ * @property Nodes\ShopCategory\ShopCategory $shopCategory
  */
 class Client
 {
