@@ -224,7 +224,7 @@ class Item extends NodeAbstract
      */
     public function updateItemImage($parameters = []): ResponseData
     {
-        return $this->post('/api/v1/item/update', $parameters);
+        return $this->post('/api/v1/item/img/update', $parameters);
     }
 
     /**
