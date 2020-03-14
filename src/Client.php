@@ -29,12 +29,12 @@ use function json_encode;
 use function time;
 
 /**
- * @property Nodes\Item\Item item
- * @property Nodes\Logistics\Logistics logistics
- * @property Nodes\Order\Order order
- * @property Nodes\Returns\Returns returns
- * @property Nodes\Shop\Shop shop
- * @property Nodes\Discount\Discount discount
+ * @property Nodes\Item\Item $item
+ * @property Nodes\Logistics\Logistics $logistics
+ * @property Nodes\Order\Order $order
+ * @property Nodes\Returns\Returns $returns
+ * @property Nodes\Shop\Shop $shop
+ * @property Nodes\Discount\Discount $discount
  * @property Nodes\ShopCategory\ShopCategory $shopCategory
  */
 class Client

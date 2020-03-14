@@ -14,7 +14,7 @@ class Logistic extends RequestParameters
     /**
      * Related to shopee.logistics.GetLogistics result.logistics.logistic_id
      *
-     * @param $logisticId
+     * @param int $logisticId
      * @return $this
      */
     public function setLogisticId(int $logisticId)
