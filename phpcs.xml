@@ -9,7 +9,7 @@
   <arg name="colors"/>
 
   <!-- inherit rules from: -->
-  <rule ref="PSR2"/>
+  <rule ref="PSR12"/>
 
   <!-- specific and just exclude rules in some file -->
 
