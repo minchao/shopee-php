@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Shopee\Nodes\Custom;
-
 
 use Shopee\Nodes\NodeAbstract;
 use Shopee\RequestParametersInterface;
@@ -18,7 +16,7 @@ class Custom extends NodeAbstract
      * @param array|RequestParametersInterface $parameters
      * @return ResponseData
      */
-    public function request($url,$parameters = []): ResponseData
+    public function request($url, $parameters = []): ResponseData
     {
         return $this->post($url, $parameters);
     }
