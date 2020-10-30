@@ -51,4 +51,15 @@ class Shop extends NodeAbstract
     {
         return $this->post('/api/v1/shop/update', $parameters);
     }
+
+    /**
+     * Use this call to get basic info of shops which have authorized to the partner.
+     *
+     * @param array|RequestParametersInterface $parameters
+     * @return ResponseData
+     */
+    public function getShopsByPartner($parameters = []): ResponseData
+    {
+        return $this->post('/api/v1/shop/get_partner_shop', $parameters);
+    }
 }
