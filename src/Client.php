@@ -160,8 +160,8 @@ class Client
     public function getDefaultParameters(): array
     {
         return [
-            'partner_id' => $this->partnerId,
-            'shopid' => $this->shopId,
+            'partner_id' => (int) $this->partnerId,
+            'shopid' => (int) $this->shopId,
             'timestamp' => time(), // Put the current UNIX timestamp when making a request
         ];
     }
