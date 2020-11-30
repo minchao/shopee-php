@@ -6,6 +6,7 @@
 /build/
 # see https://stackoverflow.com/a/44764078
 /phpunit.xml
+.phpunit.result.cache
 
 # IntelliJ IDEA project files
 .idea/

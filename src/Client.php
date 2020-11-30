@@ -24,7 +24,6 @@ use function array_key_exists;
 use function array_merge;
 use function getenv;
 use function GuzzleHttp\Psr7\uri_for;
-use function hash_hmac;
 use function json_encode;
 use function time;
 
@@ -72,6 +71,9 @@ class Client
     /** @var NodeAbstract[] */
     protected $nodes = [];
 
+    /** @var SignatureGeneratorInterface */
+    protected $signatureGenerator;
+
     public function __construct(array $config = [])
     {
         $config = array_merge([
@@ -81,6 +83,7 @@ class Client
             'secret' => getenv(self::ENV_SECRET_NAME),
             'partner_id' => (int)getenv(self::ENV_PARTNER_ID_NAME),
             'shopid' => (int)getenv(self::ENV_SHOP_ID_NAME),
+            SignatureGeneratorInterface::class => null,
         ], $config);
 
         $this->httpClient = $config['httpClient'] ?: new HttpClient();
@@ -89,6 +92,15 @@ class Client
         $this->secret = $config['secret'];
         $this->partnerId = $config['partner_id'];
         $this->shopId = $config['shopid'];
+
+        $signatureGenerator = $config[SignatureGeneratorInterface::class];
+        if (is_null($signatureGenerator)) {
+            $this->signatureGenerator = new SignatureGenerator($this->secret);
+        } elseif ($signatureGenerator instanceof SignatureGeneratorInterface) {
+            $this->signatureGenerator = $signatureGenerator;
+        } else {
+            throw new InvalidArgumentException('Signature generator not implement SignatureGeneratorInterface');
+        }
 
         $this->nodes['item'] = new Nodes\Item\Item($this);
         $this->nodes['logistics'] = new Nodes\Logistics\Logistics($this);
@@ -191,9 +203,8 @@ class Client
     protected function signature(UriInterface $uri, string $body): string
     {
         $url = Uri::composeComponents($uri->getScheme(), $uri->getAuthority(), $uri->getPath(), '', '');
-        $data = $url . '|' . $body;
 
-        return hash_hmac('sha256', $data, $this->secret);
+        return $this->signatureGenerator->generateSignature($url, $body);
     }
 
     /**

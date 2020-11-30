@@ -6,6 +6,7 @@ use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use InvalidArgumentException;
 use Psr\Http\Message\UriInterface;
 use Shopee\Client;
 use PHPUnit\Framework\TestCase;
@@ -13,6 +14,9 @@ use Shopee\Exception\Api\ApiException;
 use Shopee\Exception\Api\BadRequestException;
 use Shopee\Exception\Api\ClientException;
 use Shopee\Exception\Api\ServerException;
+use Shopee\SignatureGenerator;
+use Shopee\SignatureGeneratorInterface;
+use stdClass;
 
 use function GuzzleHttp\Psr7\uri_for;
 
@@ -46,6 +50,31 @@ class ClientTest extends TestCase
         $this->assertInstanceOf(UriInterface::class, $client->getBaseUrl());
         $this->assertEquals($config['baseUrl'], $client->getBaseUrl()->__toString());
         $this->assertEquals($config['userAgent'], $client->getUserAgent());
+    }
+
+    public function testCreateClientWithInvalidSignatureGenerator()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $this->createClient([
+            SignatureGeneratorInterface::class => new stdClass(),
+        ]);
+    }
+
+    public function testShouldBeOkWhenRequestWithCustomSignatureGenerator()
+    {
+        $signatureGenerator = new class ('PARTNER_KEY') extends SignatureGenerator {
+            public function generateSignature(string $url, string $body): string
+            {
+                return 'CUSTOM_SIGNATURE';
+            }
+        };
+
+        $actual = $this->createClient([
+            SignatureGeneratorInterface::class => $signatureGenerator,
+        ])->newRequest('/api/v1/orders/detail');
+
+        $this->assertEquals('CUSTOM_SIGNATURE', $actual->getHeaderLine('Authorization'));
     }
 
     public function testShouldBeOkWhenNewRequest()
@@ -192,7 +221,7 @@ class ClientTest extends TestCase
 
     public function testThrowExceptionWhenCallNotExistsProperty()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Property "unknown" not exists');
 
         $client = $this->createClient();
