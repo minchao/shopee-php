@@ -8,6 +8,7 @@ use GuzzleHttp\Exception\ClientException as GuzzleClientException;
 use GuzzleHttp\Exception\ServerException as GuzzleServerException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
+use GuzzleHttp\Psr7\Utils;
 use InvalidArgumentException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -23,7 +24,6 @@ use Shopee\Exception\Api\ServerException;
 use function array_key_exists;
 use function array_merge;
 use function getenv;
-use function GuzzleHttp\Psr7\uri_for;
 use function json_encode;
 use function time;
 
@@ -215,7 +215,7 @@ class Client
      */
     public function newRequest($uri, array $headers = [], $data = []): RequestInterface
     {
-        $uri = uri_for($uri);
+        $uri = Utils::uriFor($uri);
         $path = $this->baseUrl->getPath() . $uri->getPath();
 
         $uri = $uri

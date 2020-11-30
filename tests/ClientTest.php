@@ -6,6 +6,7 @@ use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\Utils;
 use InvalidArgumentException;
 use Psr\Http\Message\UriInterface;
 use Shopee\Client;
@@ -17,8 +18,6 @@ use Shopee\Exception\Api\ServerException;
 use Shopee\SignatureGenerator;
 use Shopee\SignatureGeneratorInterface;
 use stdClass;
-
-use function GuzzleHttp\Psr7\uri_for;
 
 class ClientTest extends TestCase
 {
@@ -152,7 +151,7 @@ class ClientTest extends TestCase
             'baseUrl' => $baseUri,
         ]);
 
-        $expected = uri_for($exceptedUri);
+        $expected = Utils::uriFor($exceptedUri);
         $actual = $client->newRequest($actualUri)->getUri();
 
         $this->assertEquals($expected, $actual);
