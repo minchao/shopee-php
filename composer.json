@@ -1,48 +1,49 @@
 {
-  "name": "minchao/shopee-php",
-  "description": "Shopee Partner API PHP SDK",
-  "type": "library",
-  "keywords": [
-    "shopee",
-    "openapi"
-  ],
-  "homepage": "https://github.com/minchao/shopee-php",
-  "license": "BSD-3-Clause",
-  "support": {
-    "issues": "https://github.com/minchao/shopee-php/issues"
-  },
-  "require": {
-    "php": ">=7.1",
-    "ext-json": "*",
-    "guzzlehttp/guzzle": "^6.5 || ^7.0"
-  },
-  "require-dev": {
-    "phpstan/phpstan": "^0.12.14",
-    "phpunit/phpunit": "^7.5 || ^8.0 || ^9.0",
-    "squizlabs/php_codesniffer": "^3.5"
-  },
-  "autoload": {
-    "psr-4": {
-      "Shopee\\": "src"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Shopee\\Tests\\": "tests"
-    }
-  },
-  "config": {
-    "sort-packages": true
-  },
-  "scripts": {
-    "check": [
-      "@lint",
-      "@test"
+    "name": "minchao/shopee-php",
+    "description": "Shopee Partner API PHP SDK",
+    "type": "library",
+    "keywords": [
+        "shopee",
+        "openapi"
     ],
-    "lint": "phpcs",
-    "lint-fix": "phpcbf",
-    "phpstan": "phpstan analyse src --level=1",
-    "test": "phpunit",
-    "coverage-html": "phpunit --coverage-html=build/coverage-html"
-  }
+    "homepage": "https://github.com/minchao/shopee-php",
+    "license": "BSD-3-Clause",
+    "support": {
+        "issues": "https://github.com/minchao/shopee-php/issues"
+    },
+    "require": {
+        "php": ">=7.1",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^6.5 || ^7.0",
+        "psr/http-server-middleware": "^1.0"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^0.12.14",
+        "phpunit/phpunit": "^7.5 || ^8.0 || ^9.0",
+        "squizlabs/php_codesniffer": "^3.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Shopee\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Shopee\\Tests\\": "tests"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "scripts": {
+        "check": [
+            "@lint",
+            "@test"
+        ],
+        "lint": "phpcs",
+        "lint-fix": "phpcbf",
+        "phpstan": "phpstan analyse src --level=1",
+        "test": "phpunit",
+        "coverage-html": "phpunit --coverage-html=build/coverage-html"
+    }
 }
