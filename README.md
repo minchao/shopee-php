@@ -9,7 +9,7 @@ This is a [Shopee Partner API](https://open.shopee.com/documents) Client for PHP
 
 ## Requirements
 
-* PHP >= 7.1
+* PHP >= 7.2
 * [Composer](https://getcomposer.org/download/)
 * [Guzzle](https://guzzle.readthedocs.io/en/latest/overview.html#requirements)
 

@@ -3,6 +3,7 @@
 
 # Exclude unused files
 # see: https://redd.it/2jzp6k
+/examples
 /tests                     export-ignore
 /.editorconfig             export-ignore
 /.gitattributes            export-ignore
