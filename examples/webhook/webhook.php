@@ -9,19 +9,18 @@
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Shopee\SignatureGenerator;
+use Shopee\SignatureValidator;
 use Slim\Factory\AppFactory;
 
 require __DIR__ . '/../../vendor/autoload.php';
 
 $app = AppFactory::create();
 $signatureGenerator = new SignatureGenerator(getenv('PARTNER_KEY'));
+$signatureValidator = new SignatureValidator($signatureGenerator);
 
-$app->post('/webhook', function (Request $request, Response $response) use ($signatureGenerator) {
-    $url = (string)$request->getUri();
-    $body = $request->getBody()->getContents();
-
+$app->post('/webhook', function (Request $request, Response $response) use ($signatureValidator) {
     // Verify push content
-    if ($signatureGenerator->generateSignature($url, $body) !== $request->getHeaderLine('Authorization')) {
+    if (!$signatureValidator->isValid($request)) {
         error_log('Invalid authorization signature');
         return $response;
     }
