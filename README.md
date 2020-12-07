@@ -28,12 +28,14 @@ Create an instance of the Shopee client, then use to access the Shopee Partner A
 ```php
 <?php
 
-require_once __DIR__ . '/vendor/autoload.php';
+use Shopee\Client;
 
-$client = new \Shopee\Client([
-    'secret' => SHOPEE_SECRET,
-    'partner_id' => SHOPEE_PARTNER_ID,
-    'shopid' => SHOPEE_SHOP_ID,
+require __DIR__ . './vendor/autoload.php';
+
+$client = new Client([
+    'secret' => getenv('SHOPEE_PARTNER_KEY'),
+    'partner_id' => getenv('SHOPEE_PARTNER_ID'),
+    'shopid' => getenv('SHOPEE_SHOP_ID'),
 ]);
 ```
 
@@ -51,6 +53,47 @@ Alternatively, you can also use the parameter model within request.
 $parameters = (new \Shopee\Nodes\Item\Parameters\GetItemDetail())
     ->setItemId(1978);
 $response = $client->item->getItemDetail($parameters);
+```
+
+### Webhook
+
+Use webhook to receive incoming push notifications:
+
+```php
+<?php
+
+/**
+ * Push Mechanism (WebHook)
+ *
+ * @see  https://open.shopee.com/documents?module=63&type=2&id=55
+ */
+
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Shopee\SignatureGenerator;
+use Shopee\SignatureValidator;
+use Slim\Factory\AppFactory;
+
+require __DIR__ . './vendor/autoload.php';
+
+$app = AppFactory::create();
+$signatureGenerator = new SignatureGenerator(getenv('PARTNER_KEY'));
+$signatureValidator = new SignatureValidator($signatureGenerator);
+
+$app->post('/webhook', function (Request $request, Response $response) use ($signatureValidator) {
+    // Verify push content
+    if (!$signatureValidator->isValid($request)) {
+        error_log('Invalid authorization signature');
+        return $response;
+    }
+
+    // TODO here to handle your business logic
+
+    // HTTP response must with status code 2xx and empty body
+    return $response;
+});
+
+$app->run();
 ```
 
 ## License
