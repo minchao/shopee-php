@@ -30,7 +30,7 @@ Create an instance of the Shopee client, then use to access the Shopee Partner A
 
 use Shopee\Client;
 
-require __DIR__ . './vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
 $client = new Client([
     'secret' => getenv('SHOPEE_PARTNER_KEY'),
@@ -74,7 +74,7 @@ use Shopee\SignatureGenerator;
 use Shopee\SignatureValidator;
 use Slim\Factory\AppFactory;
 
-require __DIR__ . './vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
 $app = AppFactory::create();
 $signatureGenerator = new SignatureGenerator(getenv('PARTNER_KEY'));
