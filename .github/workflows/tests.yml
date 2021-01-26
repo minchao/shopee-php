@@ -1,0 +1,41 @@
+on: [ push, pull_request ]
+name: tests
+
+jobs:
+  test:
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ ubuntu-latest ]
+        php-versions: [ 8, 7.4, 7.3, 7.2, 7.1 ]
+        phpunit-versions: [ latest ]
+
+    steps:
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          coverage: xdebug
+      - uses: actions/checkout@v2
+
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install dependencies
+        run: composer install --prefer-dist
+
+      - name: Run lint
+        run: composer run lint
+
+      - name: Run static analysis (phpstan)
+        run: composer run phpstan
+
+      - name: Run test
+        run: composer run test
