@@ -1,6 +1,6 @@
 # shopee-php
 
-[![Build Status](https://travis-ci.org/minchao/shopee-php.svg?branch=master)](https://travis-ci.org/minchao/shopee-php)
+[![tests](https://github.com/minchao/shopee-php/workflows/tests/badge.svg?branch=master)](https://github.com/minchao/shopee-php/actions?query=workflow%3Atests)
 [![Latest Stable Version](https://poser.pugx.org/minchao/shopee-php/v/stable)](https://packagist.org/packages/minchao/shopee-php)
 [![Latest Unstable Version](https://poser.pugx.org/minchao/shopee-php/v/unstable)](https://packagist.org/packages/minchao/shopee-php)
 [![composer.lock](https://poser.pugx.org/minchao/shopee-php/composerlock)](https://packagist.org/packages/minchao/shopee-php)
