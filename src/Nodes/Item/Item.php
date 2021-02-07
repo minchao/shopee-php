@@ -325,4 +325,15 @@ class Item extends NodeAbstract
     {
         return $this->post('/api/v1/items/unlist', $parameters);
     }
+
+    /**
+     * For adding 2-tier variations (Forked).
+     *
+     * @param array|Parameters\InitTierVariation $parameters
+     * @return ResponseData
+     */
+    public function initTierVariation($parameters = []): ResponseData
+    {
+        return $this->post('api/v1/item/tier_var/init', $parameters);
+    }
 }
