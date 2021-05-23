@@ -35,6 +35,7 @@ use function time;
  * @property Nodes\Shop\Shop $shop
  * @property Nodes\Discount\Discount $discount
  * @property Nodes\ShopCategory\ShopCategory $shopCategory
+ * @property Nodes\Payment\Payment $payment
  */
 class Client
 {
@@ -110,6 +111,7 @@ class Client
         $this->nodes['shopCategory'] = new Nodes\ShopCategory\ShopCategory($this);
         $this->nodes['custom'] = new Nodes\Custom\Custom($this);
         $this->nodes['discount'] = new Nodes\Discount\Discount($this);
+        $this->nodes['payment'] = new Nodes\Payment\Payment($this);
     }
 
     public function __get(string $name)
