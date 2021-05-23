@@ -35,6 +35,7 @@ use function time;
  * @property Nodes\Shop\Shop $shop
  * @property Nodes\Discount\Discount $discount
  * @property Nodes\ShopCategory\ShopCategory $shopCategory
+ * @property Nodes\Image\Image $image
  * @property Nodes\Push\Push $push
  * @property Nodes\Payment\Payment $payment
  */
@@ -112,6 +113,7 @@ class Client
         $this->nodes['shopCategory'] = new Nodes\ShopCategory\ShopCategory($this);
         $this->nodes['custom'] = new Nodes\Custom\Custom($this);
         $this->nodes['discount'] = new Nodes\Discount\Discount($this);
+        $this->nodes['image'] = new Nodes\Image\Image($this);
         $this->nodes['push'] = new Nodes\Push\Push($this);
         $this->nodes['payment'] = new Nodes\Payment\Payment($this);
     }
