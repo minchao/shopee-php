@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Shopee\Nodes\Image;
-
 
 use Shopee\Nodes\NodeAbstract;
 use Shopee\ResponseData;
