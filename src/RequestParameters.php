@@ -18,6 +18,11 @@ abstract class RequestParameters implements RequestParametersInterface
      */
     protected $parameters = [];
 
+    /**
+     * RequestParameters constructor.
+     * @param array $parameters
+     * @throws \ReflectionException
+     */
     public function __construct(array $parameters = [])
     {
         $this->fromArray($parameters);

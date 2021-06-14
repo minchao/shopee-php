@@ -39,10 +39,18 @@ use function time;
  * @property Nodes\Push\Push $push
  * @property Nodes\Payment\Payment $payment
  */
-class Client
+class ClientV2
 {
-    public const VERSION = '0.2';
+    public const VERSION = '2';
 
+    const API_TYPE_PUBLIC = 1;
+    const API_TYPE_SHOP = 2;
+    const API_TYPE_MERCHANT = 3;
+
+    /**
+     * Test link
+     * https://partner.test-stable.shopeemobile.com
+     */
     public const DEFAULT_BASE_URL = 'https://partner.shopeemobile.com';
 
     public const DEFAULT_USER_AGENT = 'shopee-php/' . self::VERSION;
@@ -52,6 +60,8 @@ class Client
     public const ENV_PARTNER_ID_NAME = 'SHOPEE_PARTNER_ID';
 
     public const ENV_SHOP_ID_NAME = 'SHOPEE_SHOP_ID';
+
+    protected $is_prod = false;
 
     /** @var ClientInterface */
     protected $httpClient;
@@ -71,6 +81,15 @@ class Client
     /** @var int */
     protected $shopId;
 
+    protected $merchantId;
+
+    /**
+     * @var string
+     */
+    protected $accessToken;
+
+    protected $apiType;
+
     /** @var NodeAbstract[] */
     protected $nodes = [];
 
@@ -85,7 +104,10 @@ class Client
             'userAgent' => self::DEFAULT_USER_AGENT,
             'secret' => getenv(self::ENV_SECRET_NAME),
             'partner_id' => (int)getenv(self::ENV_PARTNER_ID_NAME),
-            'shopid' => (int)getenv(self::ENV_SHOP_ID_NAME),
+            'shop_id' => (int)getenv(self::ENV_SHOP_ID_NAME),
+            'access_token' => '',
+            'api_type' => self::API_TYPE_PUBLIC,
+            'merchant_id' => '',
             SignatureGeneratorInterface::class => null,
         ], $config);
 
@@ -94,7 +116,10 @@ class Client
         $this->setUserAgent($config['userAgent']);
         $this->secret = $config['secret'];
         $this->partnerId = $config['partner_id'];
-        $this->shopId = $config['shopid'];
+        $this->shopId = $config['shop_id'];
+        $this->accessToken = $config['access_token'];
+        $this->merchantId = $config['merchant_id'];
+        $this->apiType = $config['api_type'];
 
         $signatureGenerator = $config[SignatureGeneratorInterface::class];
         if (is_null($signatureGenerator)) {
@@ -105,17 +130,6 @@ class Client
             throw new InvalidArgumentException('Signature generator not implement SignatureGeneratorInterface');
         }
 
-        $this->nodes['item'] = new Nodes\Item\Item($this);
-        $this->nodes['logistics'] = new Nodes\Logistics\Logistics($this);
-        $this->nodes['order'] = new Nodes\Order\Order($this);
-        $this->nodes['returns'] = new Nodes\Returns\Returns($this);
-        $this->nodes['shop'] = new Nodes\Shop\Shop($this);
-        $this->nodes['shopCategory'] = new Nodes\ShopCategory\ShopCategory($this);
-        $this->nodes['custom'] = new Nodes\Custom\Custom($this);
-        $this->nodes['discount'] = new Nodes\Discount\Discount($this);
-        $this->nodes['image'] = new Nodes\Image\Image($this);
-        $this->nodes['push'] = new Nodes\Push\Push($this);
-        $this->nodes['payment'] = new Nodes\Payment\Payment($this);
     }
 
     public function __get(string $name)
@@ -203,37 +217,45 @@ class Client
      * Generate an HMAC-SHA256 signature for a HTTP request
      *
      * @param UriInterface $uri
-     * @param string $body
+     * @param integer $api_type
      * @return string
      */
-    protected function signature(UriInterface $uri, string $body): string
+    protected function signature($uri, $api_type): string
     {
-        $url = Uri::composeComponents($uri->getScheme(), $uri->getAuthority(), $uri->getPath(), '', '');
-
-        return $this->signatureGenerator->generateSignature($url, $body);
+       switch ($api_type){
+           case self::API_TYPE_PUBLIC:
+               return $auth_query = $this->signatureGenerator->generateSignaturePublicLevel($uri, $this->partnerId);
+           case self::API_TYPE_SHOP:
+               return $auth_query = $this->signatureGenerator->generateSignatureShopLevel($uri, $this->partnerId, $this->accessToken, $this->shopId);
+           case self::API_TYPE_MERCHANT:
+               return $auth_query = $this->signatureGenerator->generateSignatureMerchantLevel($uri, $this->partnerId, $this->accessToken, $this->merchantId);
+           default:
+               return "";
+       }
     }
 
     /**
      * @param string|UriInterface $uri
+     * @param $api_type integer
      * @param array $headers
      * @param array $data
      * @return RequestInterface
      */
-    public function newRequest($uri, array $headers = [], $data = []): RequestInterface
+    public function newRequest($uri, $api_type, array $headers = [], $data = []): RequestInterface
     {
         $uri = Utils::uriFor($uri);
+        $auth_query = $this->signature($uri, $api_type);
         $path = $this->baseUrl->getPath() . $uri->getPath();
-
         $uri = $uri
             ->withScheme($this->baseUrl->getScheme())
             ->withUserInfo($this->baseUrl->getUserInfo())
             ->withHost($this->baseUrl->getHost())
             ->withPort($this->baseUrl->getPort())
-            ->withPath($path);
+            ->withPath($path)
+            ->withQuery($auth_query);
 
         $jsonBody = $this->createJsonBody($data);
 
-        $headers['Authorization'] = $this->signature($uri, $jsonBody);
         $headers['User-Agent'] = $this->userAgent;
         $headers['Content-Type'] = 'application/json';
 
@@ -267,6 +289,24 @@ class Client
         }
 
         return $response;
+    }
+
+    public function getAuthorizationUrl($redirect_url)
+    {
+        $uri = Utils::uriFor("/api/v2/shop/auth_partner");
+        $auth_query = $this->signature($uri, self::API_TYPE_PUBLIC);
+        $uri = Utils::uriFor($uri);
+        $path = $this->baseUrl->getPath() . $uri->getPath();
+
+        $uri = $uri
+            ->withScheme($this->baseUrl->getScheme())
+            ->withUserInfo($this->baseUrl->getUserInfo())
+            ->withHost($this->baseUrl->getHost())
+            ->withPort($this->baseUrl->getPort())
+            ->withPath($path)
+            ->withQuery($auth_query);
+        $uri = Uri::withQueryValue($uri, 'redirect', $redirect_url);
+        return $uri->__toString();
     }
 
 }

@@ -11,13 +11,14 @@ use GuzzleHttp\Client as HttpClient;
 
 use function is_array;
 use function array_merge;
+use Shopee\ClientV2;
 
 trait ClientTrait
 {
     protected $defaultConfig = [
         'secret' => '42',
         'partner_id' => 1,
-        'shopid' => 10000,
+        'shop_id' => 10000,
     ];
 
     /**
@@ -56,5 +57,28 @@ trait ClientTrait
         }
 
         return new Client(array_merge($this->defaultConfig, $config));
+    }
+
+    public function createClientV2(array $config = [], HttpClient $httpClient = null): ClientV2
+    {
+        if ($httpClient !== null) {
+            $config['httpClient'] = $httpClient;
+        }
+
+        return new ClientV2(array_merge($this->defaultConfig, $config));
+    }
+
+    /**
+     * @param array $config
+     * @param HttpClient|null $httpClient
+     * @return \Mockery\LegacyMockInterface|\Mockery\MockInterface|ClientV2
+     */
+    public function createClientV2Mock(array $config = [], HttpClient $httpClient = null)
+    {
+        if ($httpClient !== null) {
+            $config['httpClient'] = $httpClient;
+        }
+
+        return \Mockery::mock(ClientV2::class, array_merge($this->defaultConfig, $config));
     }
 }
