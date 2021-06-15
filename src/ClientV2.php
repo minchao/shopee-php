@@ -28,16 +28,7 @@ use function json_encode;
 use function time;
 
 /**
- * @property Nodes\Item\Item $item
- * @property Nodes\Logistics\Logistics $logistics
- * @property Nodes\Order\Order $order
- * @property Nodes\Returns\Returns $returns
- * @property Nodes\Shop\Shop $shop
- * @property Nodes\Discount\Discount $discount
- * @property Nodes\ShopCategory\ShopCategory $shopCategory
- * @property Nodes\Image\Image $image
- * @property Nodes\Push\Push $push
- * @property Nodes\Payment\Payment $payment
+ * @property Nodes\Shop\Authorization $author
  */
 class ClientV2
 {
@@ -129,6 +120,8 @@ class ClientV2
         } else {
             throw new InvalidArgumentException('Signature generator not implement SignatureGeneratorInterface');
         }
+
+        $this->nodes['author'] = new Nodes\Shop\Authorization($this);
 
     }
 
