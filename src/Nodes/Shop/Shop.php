@@ -17,7 +17,7 @@ class Shop extends NodeAbstractV2
      */
     public function getShopInfo($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/shop/get_shop_info', ClientV2::API_TYPE_SHOP, $parameters);
+        return $this->get('/api/v2/shop/get_shop_info', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
     /**
@@ -28,7 +28,7 @@ class Shop extends NodeAbstractV2
      */
     public function getShopProfile($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/shop/get_profile', ClientV2::API_TYPE_SHOP, $parameters);
+        return $this->get('/api/v2/shop/get_profile', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
     /**
