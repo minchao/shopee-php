@@ -14,13 +14,15 @@ class Authorization extends NodeAbstractV2
      *
      * @param $auth_code
      * @param $partner_id
+     * @param $shop_id
      * @return ResponseData
      */
-    public function getAccessToken($auth_code, $partner_id): ResponseData
+    public function getAccessToken($auth_code, $partner_id, $shop_id): ResponseData
     {
         return $this->post('/api/v2/auth/token/get', ClientV2::API_TYPE_PUBLIC, [
             'code' => $auth_code,
-            'partner_id' => $partner_id
+            'partner_id' => $partner_id,
+            'shop_id' => $shop_id
         ]);
     }
 
@@ -29,13 +31,17 @@ class Authorization extends NodeAbstractV2
      *
      * @param $auth_code
      * @param $partner_id
+     * @param $shop_id
+     * @param $refresh_token
      * @return ResponseData
      */
-    public function refreshAccessToken($auth_code, $partner_id): ResponseData
+    public function refreshAccessToken($auth_code, $partner_id, $shop_id, $refresh_token): ResponseData
     {
         return $this->post('/api/v2/auth/access_token/get', ClientV2::API_TYPE_PUBLIC, [
             'code' => $auth_code,
-            'partner_id' => $partner_id
+            'partner_id' => $partner_id,
+            'shop_id' => $shop_id,
+            'refresh_token' => $refresh_token
         ]);
     }
 

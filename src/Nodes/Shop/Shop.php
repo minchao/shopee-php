@@ -2,64 +2,44 @@
 
 namespace Shopee\Nodes\Shop;
 
-use Shopee\Nodes\NodeAbstract;
+use Shopee\ClientV2;
+use Shopee\Nodes\NodeAbstractV2;
 use Shopee\RequestParametersInterface;
 use Shopee\ResponseData;
 
-class Shop extends NodeAbstract
+class Shop extends NodeAbstractV2
 {
     /**
      * Use this call to get information of shop.
-     *
+     * https://open.shopee.com/documents?module=92&type=1&id=536&version=2
      * @param array|RequestParametersInterface $parameters
      * @return ResponseData
      */
     public function getShopInfo($parameters = []): ResponseData
     {
-        return $this->post('/api/v1/shop/get', $parameters);
+        return $this->post('api/v2/shop/get_shop_info', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
     /**
-     * Shop performance includes the indexes from "My Performance" of Seller Center.
      *
+     * https://open.shopee.com/documents?module=92&type=1&id=584&version=2
      * @param array|RequestParametersInterface $parameters
      * @return ResponseData
      */
-    public function performance($parameters = []): ResponseData
+    public function getShopProfile($parameters = []): ResponseData
     {
-        return $this->post('/api/v1/shop/performance', $parameters);
+        return $this->post('/api/v2/shop/get_profile', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
     /**
-     * Only for TW whitelisted shop.Use this API to set the installment status of shop.
      *
+     * https://open.shopee.com/documents?module=92&type=1&id=585&version=2
      * @param array|RequestParametersInterface $parameters
      * @return ResponseData
      */
-    public function setShopInstallmentStatus($parameters = []): ResponseData
+    public function updateShopProfile($parameters = []): ResponseData
     {
-        return $this->post('/api/v1/shop/set_installment_status', $parameters);
+        return $this->post('/api/v2/shop/update_profile', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
-    /**
-     * Use this call to update information of shop.
-     *
-     * @param array|RequestParametersInterface $parameters
-     * @return ResponseData
-     */
-    public function updateShopInfo($parameters = []): ResponseData
-    {
-        return $this->post('/api/v1/shop/update', $parameters);
-    }
-
-    /**
-     * Use this call to get basic info of shops which have authorized to the partner.
-     *
-     * @param array|RequestParametersInterface $parameters
-     * @return ResponseData
-     */
-    public function getShopsByPartner($parameters = []): ResponseData
-    {
-        return $this->post('/api/v1/shop/get_partner_shop', $parameters);
-    }
 }

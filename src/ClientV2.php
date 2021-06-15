@@ -70,14 +70,14 @@ class ClientV2
     protected $partnerId;
 
     /** @var int */
-    protected $shopId;
+    public $shopId;
 
-    protected $merchantId;
+    public $merchantId;
 
     /**
      * @var string
      */
-    protected $accessToken;
+    public $accessToken;
 
     protected $apiType;
 
