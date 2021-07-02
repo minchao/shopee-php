@@ -6,14 +6,36 @@ use Shopee\RequestParameters;
 
 class GetItemsList extends RequestParameters
 {
+    const NORMAL = "NORMAL";
+    const BANNED = "BANNED";
+    const DELETED = "DELETED";
+    const UNLIST = "UNLIST";
+
     protected $parameters = [
-        'pagination_offset' => 0,
-        'pagination_entries_per_page' => 100,
+        'offset' => 0,
+        'page_size' => 100,
+        'item_status' => self::NORMAL
     ];
+
+    public function getItemStatus(): int
+    {
+        return $this->parameters['item_status'];
+    }
+
+    /**
+     * @param int $status
+     * @return $this
+     */
+    public function setItemStatus(int $status)
+    {
+        $this->parameters['item_status'] = $status;
+
+        return $this;
+    }
 
     public function getPaginationOffset(): int
     {
-        return $this->parameters['pagination_offset'];
+        return $this->parameters['offset'];
     }
 
     /**
@@ -25,14 +47,14 @@ class GetItemsList extends RequestParameters
      */
     public function setPaginationOffset(int $offset)
     {
-        $this->parameters['pagination_offset'] = $offset;
+        $this->parameters['offset'] = $offset;
 
         return $this;
     }
 
     public function getPaginationEntriesPerPage(): int
     {
-        return $this->parameters['pagination_entries_per_page'];
+        return $this->parameters['page_size'];
     }
 
     /**
@@ -46,7 +68,7 @@ class GetItemsList extends RequestParameters
      */
     public function setPaginationEntriesPerPage(int $perPage = 100)
     {
-        $this->parameters['pagination_entries_per_page'] = $perPage;
+        $this->parameters['page_size'] = $perPage;
 
         return $this;
     }

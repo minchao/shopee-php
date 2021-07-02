@@ -29,16 +29,14 @@ class Authorization extends NodeAbstractV2
     /**
      * Only for TW whitelisted shop.Use this API to set the installment status of shop.
      *
-     * @param $auth_code
      * @param $partner_id
      * @param $shop_id
      * @param $refresh_token
      * @return ResponseData
      */
-    public function refreshAccessToken($auth_code, $partner_id, $shop_id, $refresh_token): ResponseData
+    public function refreshAccessToken($partner_id, $shop_id, $refresh_token): ResponseData
     {
         return $this->post('/api/v2/auth/access_token/get', ClientV2::API_TYPE_PUBLIC, [
-            'code' => $auth_code,
             'partner_id' => $partner_id,
             'shop_id' => $shop_id,
             'refresh_token' => $refresh_token
