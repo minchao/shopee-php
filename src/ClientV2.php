@@ -32,6 +32,7 @@ use function time;
  * @property Nodes\Shop\Shop $shop
  * @property Nodes\Item\Category $category
  * @property Nodes\Item\Brand $brand
+ * @property Nodes\Item\Attribute $attribute
  */
 class ClientV2
 {
@@ -128,6 +129,7 @@ class ClientV2
         $this->nodes['shop'] = new Nodes\Shop\Shop($this);
 	    $this->nodes['category'] = new Nodes\Item\Category($this);
 	    $this->nodes['brand'] = new Nodes\Item\Brand($this);
+	    $this->nodes['attribute'] = new Nodes\Item\Attribute($this);
     }
 
     public function __get(string $name)
