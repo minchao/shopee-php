@@ -18,9 +18,7 @@ class Brand extends NodeAbstractV2 {
 	 */
 	public function getListBrandByCategory($parameters = []): ResponseData {
 
-		$uri = Utils::uriFor('/api/v2/product/get_brand_list');
-		$path = Uri::withQueryValues($uri, $parameters);
-		return $this->get($path, ClientV2::API_TYPE_SHOP, $parameters);
+		return $this->get("/api/v2/product/get_brand_list", ClientV2::API_TYPE_SHOP, $parameters);
 	}
 
 }

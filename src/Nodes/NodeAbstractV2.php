@@ -2,6 +2,8 @@
 
 namespace Shopee\Nodes;
 
+use GuzzleHttp\Psr7\Uri;
+use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\UriInterface;
 use Shopee\Client;
 use Shopee\ClientV2;
@@ -48,8 +50,10 @@ abstract class NodeAbstractV2
         if ($parameters instanceof RequestParametersInterface) {
             $parameters = $parameters->toArray();
         }
+        $uri = Utils::uriFor($uri);
+        $path = Uri::withQueryValues($uri, $parameters);
 
-        $request = $this->client->newRequest($uri, $type_api, [], $parameters)->withMethod('GET');
+        $request = $this->client->newRequest($path, $type_api, [], $parameters)->withMethod('GET');
         $response = $this->client->send($request);
 
         return new ResponseData($response);

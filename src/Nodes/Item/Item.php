@@ -2,6 +2,7 @@
 
 namespace Shopee\Nodes\Item;
 
+use Shopee\ClientV2;
 use Shopee\Nodes\NodeAbstract;
 use Shopee\Nodes\NodeAbstractV2;
 use Shopee\ResponseData;
@@ -16,7 +17,7 @@ class Item extends NodeAbstractV2
      */
     public function add($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/product/add_item', $parameters);
+        return $this->post('/api/v2/product/add_item', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
 
@@ -28,7 +29,7 @@ class Item extends NodeAbstractV2
      */
     public function getModelList($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/product/get_model_list', $parameters);
+        return $this->get('/api/v2/product/get_model_list', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
     /**
@@ -39,7 +40,7 @@ class Item extends NodeAbstractV2
      */
     public function boostItem($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/product/boost_item', $parameters);
+        return $this->post('/api/v2/product/boost_item', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
     /**
@@ -50,7 +51,7 @@ class Item extends NodeAbstractV2
      */
     public function delete($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/product/delete_item', $parameters);
+        return $this->post('/api/v2/product/delete_item', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
     /**
@@ -61,7 +62,7 @@ class Item extends NodeAbstractV2
      */
     public function deleteModel($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/product/delete_model', $parameters);
+        return $this->post('/api/v2/product/delete_model', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
     /**
@@ -72,7 +73,7 @@ class Item extends NodeAbstractV2
      */
     public function getAttributes($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/product/get_attributes', $parameters);
+        return $this->get('/api/v2/product/get_attributes', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
     /**
@@ -83,7 +84,7 @@ class Item extends NodeAbstractV2
      */
     public function getBoostedItems($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/product/get_boosted_list', $parameters);
+        return $this->get('/api/v2/product/get_boosted_list', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
     /**
@@ -94,7 +95,7 @@ class Item extends NodeAbstractV2
      */
     public function getComment($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/product/get_comment', $parameters);
+        return $this->get('/api/v2/product/get_comment', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
     /**
@@ -105,7 +106,7 @@ class Item extends NodeAbstractV2
      */
     public function getItemBaseInfo($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/product/get_item_base_info', $parameters);
+        return $this->get('/api/v2/product/get_item_base_info', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
     /**
@@ -115,7 +116,7 @@ class Item extends NodeAbstractV2
      */
     public function getItemExtraInfo($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/product/get_item_extra_info', $parameters);
+        return $this->get('/api/v2/product/get_item_extra_info', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
     /**
@@ -126,7 +127,7 @@ class Item extends NodeAbstractV2
      */
     public function getItemsList($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/product/get_item_list', $parameters);
+        return $this->get('/api/v2/product/get_item_list', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
     /**
@@ -137,7 +138,7 @@ class Item extends NodeAbstractV2
      */
     public function getPromotionInfo($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/product/get_item_promotion', $parameters);
+        return $this->get('/api/v2/product/get_item_promotion', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
     /**
@@ -148,7 +149,7 @@ class Item extends NodeAbstractV2
      */
     public function getRecommendCats($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/product/category_recommend', $parameters);
+        return $this->get('/api/v2/product/category_recommend', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
 
@@ -160,7 +161,7 @@ class Item extends NodeAbstractV2
      */
     public function replyComments($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/product/reply_comment', $parameters);
+        return $this->post('/api/v2/product/reply_comment', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
 
@@ -172,7 +173,7 @@ class Item extends NodeAbstractV2
      */
     public function updateItem($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/product/update_item', $parameters);
+        return $this->post('/api/v2/product/update_item', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
 
@@ -184,7 +185,7 @@ class Item extends NodeAbstractV2
      */
     public function updatePrice($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/product/update_price', $parameters);
+        return $this->post('/api/v2/product/update_price', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
     /**
@@ -195,7 +196,7 @@ class Item extends NodeAbstractV2
      */
     public function updateStock($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/product/update_stock', $parameters);
+        return $this->post('/api/v2/product/update_stock', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
 
@@ -207,7 +208,7 @@ class Item extends NodeAbstractV2
      */
     public function updateSipItemPrice($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/product/update_sip_item_price', $parameters);
+        return $this->post('/api/v2/product/update_sip_item_price', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
 
@@ -219,7 +220,7 @@ class Item extends NodeAbstractV2
      */
     public function unlistItem($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/product/unlist_item', $parameters);
+        return $this->post('/api/v2/product/unlist_item', ClientV2::API_TYPE_SHOP, $parameters);
     }
 
     /**
@@ -230,6 +231,6 @@ class Item extends NodeAbstractV2
      */
     public function initTierVariation($parameters = []): ResponseData
     {
-        return $this->post('/api/v2/product/init_tier_variation', $parameters);
+        return $this->post('/api/v2/product/init_tier_variation', ClientV2::API_TYPE_SHOP, $parameters);
     }
 }

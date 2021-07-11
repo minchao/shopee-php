@@ -17,9 +17,7 @@ class Category extends NodeAbstractV2 {
 	 * @return ResponseData
 	 */
 	public function getListCategory($parameters = []): ResponseData {
-		$uri = Utils::uriFor('/api/v2/product/get_category');
-		$path = Uri::withQueryValues($uri, $parameters);
-		return $this->get($path, ClientV2::API_TYPE_SHOP, $parameters);
+		return $this->get("/api/v2/product/get_category", ClientV2::API_TYPE_SHOP, $parameters);
 	}
 
 }
