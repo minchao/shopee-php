@@ -17,7 +17,7 @@ class GetItemDetail extends RequestParameters
      * @param array $itemIdList
      * @return $this
      */
-    public function setItemIdList(array $itemIdList)
+    public function setItemIdList($itemIdList)
     {
         $this->parameters['item_id_list'] = $itemIdList;
 
