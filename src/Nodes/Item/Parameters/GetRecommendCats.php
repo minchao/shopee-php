@@ -6,11 +6,10 @@ use Shopee\RequestParameters;
 
 class GetRecommendCats extends RequestParameters
 {
-    use CategoryIdTrait;
 
     public function getName(): string
     {
-        return $this->parameters['name'];
+        return $this->parameters['item_name'];
     }
 
     /**
@@ -21,7 +20,7 @@ class GetRecommendCats extends RequestParameters
      */
     public function setName(string $name)
     {
-        $this->parameters['name'] = $name;
+        $this->parameters['item_name'] = $name;
 
         return $this;
     }
