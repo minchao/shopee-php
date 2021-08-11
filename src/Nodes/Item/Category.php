@@ -19,5 +19,13 @@ class Category extends NodeAbstractV2 {
 	public function getListCategory($parameters = []): ResponseData {
 		return $this->get("/api/v2/product/get_category", ClientV2::API_TYPE_SHOP, $parameters);
 	}
-
+	/**
+	 * Use this call to get information of shop.
+	 * https://open.shopee.com/documents?module=89&type=1&id=702&version=2
+	 * @param array|RequestParametersInterface $parameters
+	 * @return ResponseData
+	 */
+	public function getCategoryRecommend($parameters = []): ResponseData {
+		return $this->get("/api/v2/product/category_recommend", ClientV2::API_TYPE_SHOP, $parameters);
+	}
 }
