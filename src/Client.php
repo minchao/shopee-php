@@ -44,6 +44,8 @@ class Client
     public const VERSION = '0.2';
 
     public const DEFAULT_BASE_URL = 'https://partner.shopeemobile.com';
+    
+    public const TEST_BASE_URL = 'https://partner.test-stable.shopeemobile.com';
 
     public const DEFAULT_USER_AGENT = 'shopee-php/' . self::VERSION;
 
@@ -77,11 +79,11 @@ class Client
     /** @var SignatureGeneratorInterface */
     protected $signatureGenerator;
 
-    public function __construct(array $config = [])
+    public function __construct(array $config = [], string $environment = 'test')
     {
         $config = array_merge([
             'httpClient' => null,
-            'baseUrl' => self::DEFAULT_BASE_URL,
+            'baseUrl' => ($environment === 'test') ? self::TEST_BASE_URL : self::DEFAULT_BASE_URL,
             'userAgent' => self::DEFAULT_USER_AGENT,
             'secret' => getenv(self::ENV_SECRET_NAME),
             'partner_id' => (int)getenv(self::ENV_PARTNER_ID_NAME),
