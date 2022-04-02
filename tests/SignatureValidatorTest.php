@@ -3,7 +3,7 @@
 namespace Shopee\Tests;
 
 use GuzzleHttp\Psr7\ServerRequest;
-use PHPStan\Testing\TestCase;
+use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 use Shopee\SignatureGenerator;
 use Shopee\SignatureValidator;
