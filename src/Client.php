@@ -26,6 +26,7 @@ use function array_merge;
 use function getenv;
 use function json_encode;
 use function time;
+use function substr;
 
 /**
  * @property Nodes\Item\Item $item
@@ -224,12 +225,16 @@ class Client
         $uri = Utils::uriFor($uri);
         $path = $this->baseUrl->getPath() . $uri->getPath();
 
+        if (substr($path, 0, 1) !== '/') {
+            $path = '/' . $path;
+        }
+        $uri = $uri->withPath($path);
+
         $uri = $uri
             ->withScheme($this->baseUrl->getScheme())
             ->withUserInfo($this->baseUrl->getUserInfo())
             ->withHost($this->baseUrl->getHost())
-            ->withPort($this->baseUrl->getPort())
-            ->withPath($path);
+            ->withPort($this->baseUrl->getPort());
 
         $jsonBody = $this->createJsonBody($data);
 
