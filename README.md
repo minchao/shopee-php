@@ -5,7 +5,7 @@
 [![Latest Unstable Version](https://poser.pugx.org/minchao/shopee-php/v/unstable)](https://packagist.org/packages/minchao/shopee-php)
 [![composer.lock](https://poser.pugx.org/minchao/shopee-php/composerlock)](https://packagist.org/packages/minchao/shopee-php)
 
-This is a [Shopee Partner API](https://open.shopee.com/documents) Client for PHP.
+This is a [Shopee OpenAPI 1.0](https://open.shopee.com/documents/v1/Introduction?module=63&type=2) Client for PHP.
 
 ## Requirements
 
