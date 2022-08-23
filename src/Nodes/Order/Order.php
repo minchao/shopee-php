@@ -140,4 +140,26 @@ class Order extends NodeAbstract
     {
         return $this->post('/api/v1/orders/unsplit', $parameters);
     }
+
+    /**
+     * Use this api to get detail information of many return by shop id.
+     *
+     * @param  array|RequestParametersInterface  $parameters
+     * @return ResponseData
+     */
+    public function getReturnList($parameters = []): ResponseData
+    {
+        return $this->get('/api/v2/returns/get_return_list', $parameters);
+    }
+
+    /**
+     * Use this api to get detail information of a return by return id.
+     *
+     * @param  array|RequestParametersInterface  $parameters
+     * @return ResponseData
+     */
+    public function getReturnDetail($parameters = []): ResponseData
+    {
+        return $this->get('/api/v2/returns/get_return_detail', $parameters);
+    }
 }
