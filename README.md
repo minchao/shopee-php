@@ -7,6 +7,8 @@
 
 This is a [Shopee OpenAPI 1.0](https://open.shopee.com/documents/v1/Introduction?module=63&type=2) Client for PHP.
 
+⚠️ [The Shopee Open API v.1.0 will be completely deprecated after 26 December 2022](https://open.shopee.com/developer-guide/22).
+
 ## Requirements
 
 * PHP >= 7.1
